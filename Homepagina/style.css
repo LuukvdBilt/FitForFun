@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+}
+.container-first {
+    background-color: rgb(0, 64, 184);
+    height: 100vh;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+    background-image: url('https://www.hanze.nl/binaries/_cb_1715930695464/content/assets/hanze/nl/over-hanze/logo/hanzelogo-beeldscherm-rgb/png/logo-hanze-oranje-zwart-rgb.png');
+    background-size: cover;
+
+}
+
+.center {
+    color: white;
+}
