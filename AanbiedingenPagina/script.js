@@ -4,5 +4,5 @@ window.addEventListener('error', function() {
     window.location.href = 'Homepagina/index.html';
 });
 
-// Opzettelijk een fout veroorzaken
-nonExistentFunction();
+//een fout veroorzaken
+//nonExistentFunction();
