@@ -68,16 +68,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="Homepagina/index.php">Home</a>
+            <a class="nav-link" href="http://www.po-fitforfun.com/AanbiedingenPagina/index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="aanbiedingen.php">Aanbiedingen</a>
+          <a class="nav-link" href="http://www.po-fitforfun.com/AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="lessen.php">Geplande lessen</a>
+            <a class="nav-link" href="http://www.po-fitforfun.com/AanbiedingenPagina/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Overzicht</a>
+            <a class="nav-link" href="http://www.po-fitforfun.com/AccountsOverzicht/">Overzicht</a>
           </li>
         </ul>
 
