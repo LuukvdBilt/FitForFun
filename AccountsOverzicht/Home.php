@@ -40,9 +40,10 @@ require 'login.php';
                     echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
                     echo "<span>" . htmlspecialchars($row['username']) . " - " . htmlspecialchars($row['role']) . "</span>";
                     echo "<span>";
-                    echo "<button class='btn btn-primary btn-sm me-2' onclick=\"window.location.href='update.php?username=" . urlencode($row['username']) . "'\">Bewerken</button>";
-
-                    echo "<button class='btn btn-danger btn-sm' onclick=\"window.location.href='delete.php?username=" . urlencode($row['username']) . "'\">Verwijderen</button>";
+                    if ($_SESSION['role'] === 'Administrator') {
+                        echo "<button class='btn btn-primary btn-sm me-2' onclick=\"window.location.href='update.php?username=" . urlencode($row['username']) . "'\">Bewerken</button>";
+                        echo "<button class='btn btn-danger btn-sm' onclick=\"window.location.href='delete.php?username=" . urlencode($row['username']) . "'\">Verwijderen</button>";
+                    }
 
                     echo "</span>";
                     echo "</li>";
