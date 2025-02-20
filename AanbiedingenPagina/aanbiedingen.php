@@ -91,17 +91,16 @@ if ($conn->connect_error) {
         foreach ($emojiArray as $emoji) {
           $beschrijving = str_replace($emoji, $emoji . "<br>", $beschrijving);
         }
-
         echo "<div class='col'>";
         echo "  <div class='card'>";
         echo "    <h4>" . $beschrijving . "</h4>";
-        echo "    <p class='line'>" . $row["prijs"] . "</p>";
-        echo "    <p>" . $row["kortingsprijs"] . "</p>";
+        echo "    <p class='line'>€" . $row["prijs"] . "</p>";
+        echo "    <p>€" . $row["kortingsprijs"] . "</p>";
         echo "    <button class='btn'>Voeg aanbieding toe</button>";
         echo "  </div>";
         echo "</div>";
-      }
-    } else {
+            }
+          } else {
       echo "0 results";
     }
     $conn->close();
