@@ -54,6 +54,29 @@
       </nav>
 
     <div class="containerfirst">
-      
+      <div class="Subtitle">Beweeg, lach en geniet - jouw sportavontuur begint hier!
+      </div>
+      <div id="textcontainer">
+        <div class="Subtitle">
+          <p>Fitforfun</p> 
+          <p class="normalfont">De plek waar sporten en plezier samenkomen, waar je niet alleen je fysieke grenzen verlegt, 
+            maar ook steeds nieuwe uitdagingen aangaat. Elke training biedt iets nieuws, zodat je altijd gemotiveerd blijft 
+            om verder te groeien. <br> Of je nu wilt werken aan kracht, uithoudingsvermogen of gewoon lekker wilt bewegen, 
+            hier vind je de energie en plezier die je nodig hebt om je doelen te behalen!</p>
+        </div>
+        <div class="customcard-container">
+          <div class="customcard"><p class="cardsub">Jouw Weg naar Succes</p> 
+            <p class="normalfont">Elke stap telt - ontdek onze exclusieve aanbiedingen en plan je volgende les om je doelen te bereiken!</p>
+            <button type="button" class="btn btn-warning btncard">Aanbiedingen</button>
+          </div>
+          <div class="customcard">
+            <p class="cardsub">Onze Lessen</p> 
+            <p class="normalfont">Van de eerste stap tot je grootste doelen - alles wat je nodig hebt om je fitnessreis te starten, vind je hier!</p>
+            <button type="button" class="btn btn-warning btncard">Geplande lessen</button>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
+
 </html>

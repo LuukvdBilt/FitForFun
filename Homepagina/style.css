@@ -6,6 +6,16 @@ body {
     padding-top: 80px; 
 }
 
+.normalfont {
+    color: white;
+    font-size: 16px;
+}
+.cardsub {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -54,3 +64,50 @@ h1 {
 .containerfirst {
     height: auto;
 }
+
+.Subtitle {
+    max-width: 1000px;
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+#textcontainer {
+    background-color: #003380;
+    margin: 80px auto;
+    max-width: 1300px;
+    height: 500px;
+    position: relative;
+    height: auto;
+}
+
+.customcard-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 80px;
+    position: relative;
+    top: 60%;
+    width: 100%;
+}
+
+.customcard {
+    background-color: rgb(158, 158, 158);
+    text-align: center;
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px;
+}
+
+.btncard {
+    position: absolute;
+    top: 70%;
+    transform: translate(-50%, -50%);
+}
+
