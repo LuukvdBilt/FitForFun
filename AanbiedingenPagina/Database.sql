@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS FitForFun;
 
 CREATE DATABASE FitForFun;
 
-USE Fitforfun;
+use Fitforfun; 
 
 CREATE TABLE Aanbiedingen (
     id INT AUTO_INCREMENT PRIMARY KEY,
