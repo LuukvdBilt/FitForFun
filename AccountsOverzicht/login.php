@@ -7,7 +7,7 @@ $mysqli = new mysqli("localhost", "root", "", "accounts_overzicht");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
-} 
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mysqli->close();
         header("Location: login.php");
         exit;
-    } else { 
+    } else {
         $_SESSION['error_message2'] = "<span style='color: red;'>Onjuiste gebruikersnaam of wachtwoord.</span>";
         $stmt->close();
         $mysqli->close();
@@ -44,38 +44,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<?php if (!isset($_SESSION['username'])): ?>
-    <div class="containerlogin">
-    <?php
-    
-    if (isset($_SESSION['error_message'])) {
-        echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
-        unset($_SESSION['error_message']); 
-    }
+    <?php if (!isset($_SESSION['username'])): ?>
+        <div class="containerlogin">
+            <?php
 
-    if (isset($_SESSION['error_message2'])) {
-        echo "<div class='error-message'>" . $_SESSION['error_message2'] . "</div>";
-        unset($_SESSION['error_message2']); 
-    }
-    ?>
+            if (isset($_SESSION['error_message'])) {
+                echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
+                unset($_SESSION['error_message']);
+            }
 
-   
-        <form action="login.php" method="POST">
-            <label for="username">Gebruikersnaam:</label>
-            <input type="text" id="username" name="username" required><br>
-            <label for="password">Wachtwoord:</label>
-            <input type="password" id="password" name="password" required><br>
-            <input type="submit" value="Inloggen">
-        </form>
-    <?php endif; ?>
+            if (isset($_SESSION['error_message2'])) {
+                echo "<div class='error-message'>" . $_SESSION['error_message2'] . "</div>";
+                unset($_SESSION['error_message2']);
+            }
+            ?>
+
+
+            <form action="login.php" method="POST">
+                <label for="username">Gebruikersnaam:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required><br>
+                <input type="submit" value="Inloggen">
+            </form>
+        <?php endif; ?>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
