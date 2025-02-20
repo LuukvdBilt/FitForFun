@@ -1,19 +1,15 @@
 <?php
 session_start();
 
-// 1. Controleer of de pagina al eerder geladen is
+
 if (!isset($_SESSION['page_loaded'])) {
-    // Eerste keer: zet de vlag
     $_SESSION['page_loaded'] = true;
-    // Voer de normale logica uit
 } else {
-    // 2. Als de pagina al eens geladen is, vernietig de sessie en redirect
     session_destroy();
     header("Location: login.php");
     exit;
 }
 
-// Je login-logica (en db-verbinding) blijft actief
 require 'login.php';
 ?>
 
@@ -30,9 +26,6 @@ require 'login.php';
         <h1>Welkom bij het Accounts Overzicht</h1>
         <div id="accounts-list">
             <?php
-            // LET OP: Zorg dat $mysqli (db-verbinding) beschikbaar is.
-            // Mogelijk heb je dit in login.php of elders geregeld.
-            // Hier gaan we ervan uit dat de verbinding al bestaat via $mysqli.
 
             $result = $mysqli->query("SELECT username, role FROM users");
 
