@@ -1,9 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #060690;
+    background-color: #0047AB !important;
     background-size: cover;
     background-position: center;
-    background-color: #032f6d;
     padding-top: 80px; 
 }
 
@@ -33,6 +32,7 @@ h1 {
 
 .navbar {
     background-color: #0047AB;
+    border-bottom: 1px solid black;
 }
 .navbar .logo {
     width: 38px;
@@ -47,4 +47,10 @@ h1 {
 
 .nav-link {
     color: white !important;
+}
+
+/* container first */
+
+.containerfirst {
+    height: auto;
 }
