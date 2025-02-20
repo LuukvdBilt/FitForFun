@@ -39,16 +39,16 @@ if ($conn->connect_error) {
 
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="Homepagina/index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="aanbiedingen.html">Aanbiedingen</a>
+            <a class="nav-link" href="aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="lessen.html">Geplande lessen</a>
+            <a class="nav-link" href="lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="overzicht.html">Overzicht</a>
+            <a class="nav-link" href="login.php">Overzicht</a>
           </li>
         </ul>
 
