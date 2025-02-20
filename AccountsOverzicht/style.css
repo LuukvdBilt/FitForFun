@@ -1,8 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #060690;
-    margin: 0;
-    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: #032f6d;
+    padding-top: 80px; 
 }
 
 .container {
@@ -28,35 +30,17 @@ h1 {
     text-align: center;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
 
-nav ul li {
-    display: inline;
+.navbar {
+    background-color: #0047AB;
+}
+.navbar .logo {
+    width: 38px;
+    height: 38px;
     margin-right: 15px;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-}
-
-#accounts-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#accounts-list li {
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-}
-
-#accounts-list p {
-    color: red;
-    font-weight: bold;
+.nav-link {
+    color: white;
+    margin: 5px;
 }
