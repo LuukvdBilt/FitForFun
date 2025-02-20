@@ -6,3 +6,10 @@ window.addEventListener('error', function() {
 
 //een fout veroorzaken
 //nonExistentFunction();
+
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    window.location.href = 'winkelwagen.php'; 
+  });
+});
