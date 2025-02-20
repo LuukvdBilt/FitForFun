@@ -1,11 +1,13 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $mysqli = new mysqli("localhost", "root", "", "accounts_overzicht");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 } 
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -24,20 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mysqli->close();
         header("Location: Home.php");
         exit;
-        } else if ($user && ($user['role'] == "GastGebruiker" || $user['role'] == "Lid") && $user['password'] == $password) {
-            $_SESSION['error_message'] = "U heeft geen toegang tot deze pagina.";
-            $stmt->close();
-            $mysqli->close();
-            header("Location: login.php");
-            exit;
-        } else { 
-            $_SESSION['error_message'] = "Onjuiste gebruikersnaam of wachtwoord.";
-            $stmt->close();
-            $mysqli->close();
-            header("Location: login.php");
-            exit;
-        }
+    } else if ($user && ($user['role'] == "GastGebruiker" || $user['role'] == "Lid") && $user['password'] == $password) {
+        $_SESSION['error_message'] = "<span style='color: red;'>U heeft geen toegang tot deze pagina.</span>";
+        $stmt->close();
+        $mysqli->close();
+        header("Location: login.php");
+        exit;
+    } else { 
+        $_SESSION['error_message2'] = "<span style='color: red;'>Onjuiste gebruikersnaam of wachtwoord.</span>";
+        $stmt->close();
+        $mysqli->close();
+        header("Location: login.php");
+        exit;
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,26 +51,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php if (!isset($_SESSION['username'])): ?>
     <div class="containerlogin">
     <?php
+    
     if (isset($_SESSION['error_message'])) {
-        
         echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
-        echo "<script>
-            setTimeout(function() {
-                document.querySelector('.error-message').style.display = 'none';
-            }, 2000);
-              </script>";
-              unset($_SESSION['error_message']);
+        unset($_SESSION['error_message']); 
+    }
+
+    if (isset($_SESSION['error_message2'])) {
+        echo "<div class='error-message'>" . $_SESSION['error_message2'] . "</div>";
+        unset($_SESSION['error_message2']); 
     }
     ?>
-    <form action="login.php" method="POST">
-        <label for="username">Gebruikersnaam:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Wachtwoord:</label>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Inloggen">
-    </form>
+
+   
+        <form action="login.php" method="POST">
+            <label for="username">Gebruikersnaam:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Wachtwoord:</label>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Inloggen">
+        </form>
+    <?php endif; ?>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
