@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$mysqli = new mysqli("localhost", "root", "", "accounts_overzicht");
+$mysqli = new mysqli("localhost", "root", "", "Fitforfun");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
