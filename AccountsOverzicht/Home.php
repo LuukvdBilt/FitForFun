@@ -26,12 +26,14 @@ require 'login.php';
 </head> 
 
 <body>
+    
     <div class="container mt-4">
         <h1>Welkom bij het Accounts Overzicht</h1>
         <div id="accounts-list">
             <?php
             $result = $mysqli->query("SELECT username, role FROM users");
             if ($result->num_rows > 0) {
+                echo str_repeat("<br>", 2);
                 echo "<h2 class='mb-3'>Overzicht van alle Accounts</h2><ul class='list-group'>";
 
                 while ($row = $result->fetch_assoc()) {
