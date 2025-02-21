@@ -54,9 +54,6 @@ if ($conn->connect_error) {
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i> Winkelwagen</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
