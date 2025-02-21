@@ -51,7 +51,6 @@ if ($conn->connect_error) {
             <a class="nav-link" href="http://www.po-fitforfun.com/AccountsOverzicht/">Overzicht</a>
           </li>
         </ul>
-
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#">Login</a>

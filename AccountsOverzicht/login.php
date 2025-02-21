@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$mysqli = new mysqli("localhost", "root", "", "accounts_overzicht");
+$mysqli = new mysqli("localhost", "root", "", "Fitforfun");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
@@ -82,9 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
 
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i> Winkelwagen</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
