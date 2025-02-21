@@ -22,10 +22,9 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-    
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="Homepagina/index.php">Home</a>
+                <a class="nav-link nav-link-Home" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="aanbiedingen.php">Aanbiedingen</a>
@@ -79,4 +78,6 @@
       </div>
     </div>
 
+  
+    <script src="script.js"></script>
 </html>
