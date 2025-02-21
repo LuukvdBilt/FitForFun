@@ -10,6 +10,6 @@ window.addEventListener('error', function() {
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach(button => {
   button.addEventListener('click', () => {
-    window.location.href = 'winkelwagen.php'; 
+    window.location.href = ''; 
   });
 });

@@ -39,16 +39,16 @@ if ($conn->connect_error) {
 
       <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="http://www.po-fitforfun.com/AanbiedingenPagina/index.php">Home</a>
+            <a class="nav-link" href="../Homepagina/index.php">Home</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="http://www.po-fitforfun.com/AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
+          <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://www.po-fitforfun.com/AanbiedingenPagina/lessen.php">Geplande lessen</a>
+            <a class="nav-link" href="../Geplande-lessen/index.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://www.po-fitforfun.com/AccountsOverzicht/">Overzicht</a>
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
           </li>
         </ul>
         <ul class="navbar-nav">
