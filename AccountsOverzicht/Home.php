@@ -44,13 +44,12 @@ require 'login.php';
                         echo "<button class='btn btn-primary btn-sm me-2' onclick=\"window.location.href='update.php?username=" . urlencode($row['username']) . "'\">Bewerken</button>";
                         echo "<button class='btn btn-danger btn-sm' onclick=\"window.location.href='delete.php?username=" . urlencode($row['username']) . "'\">Verwijderen</button>";
                     }
-
                     echo "</span>";
                     echo "</li>";
                 }
                 echo "</ul>";
             } else {
-                echo "<div class='alert alert-warning'>Geen accounts gevonden in de database.</div>";
+                echo "";
             }
             $mysqli->close();
             ?>
