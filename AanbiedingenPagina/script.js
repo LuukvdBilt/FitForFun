@@ -5,6 +5,6 @@ window.addEventListener('error', function() {
 });
 
 //een fout veroorzaken
-nonExistentFunction();
+//nonExistentFunction();
 
 
