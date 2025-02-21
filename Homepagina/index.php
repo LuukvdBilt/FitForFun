@@ -23,18 +23,18 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link nav-link-Home" href="index.php">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="aanbiedingen.php">Aanbiedingen</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="lessen.php">Geplande lessen</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.php">Overzicht</a>
-              </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../Homepagina/index.php">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Geplande-lessen/index.php">Geplande lessen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
+          </li>
             </ul>
     
             <ul class="navbar-nav">
