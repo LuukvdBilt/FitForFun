@@ -34,9 +34,7 @@ $lessons = [
         <li class="nav-item">
             <a class="nav-link active" href="lessen.php">Geplande lessen</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="overzicht.php">Mijn Reserveringen</a>
-        </li>
+        
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'docent'): ?>
             <li class="nav-item">
                 <a class="nav-link" href="beheer.php">Lesbeheer</a>
