@@ -22,8 +22,7 @@ session_start(); // Start de sessie
             </a>
         </div>
     </nav>
-    <div class="error-triangle">
-    <div class="error-cross"></div>
+    
 </div>
 
     <!-- Hoofdinhoud -->
