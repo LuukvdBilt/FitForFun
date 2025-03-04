@@ -45,7 +45,7 @@ if ($conn->connect_error) {
           <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../lessonkalendar/lessen.php">Geplande lessen</a>
+            <a class="nav-link" href="../lessonkalender/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
