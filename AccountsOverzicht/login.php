@@ -83,9 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i> Winkelwagen</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
