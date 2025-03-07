@@ -77,16 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="nav-link" href="../lessonkalender/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
+            <a class="nav-link" href="../Dashboard/Dashboard.php">Management Dashboard</a>
           </li>
         </ul>
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="logout.php">Uitloggen</a>
           </li>
         </ul>
       </div>
@@ -94,10 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </nav>
 
-    <?php if (!isset($_SESSION['username'])) : ?>
-        <div class="containerlogin">
-          
-        <form action="login.php" method="POST">
+<?php if (isset($_SESSION['username'])) : ?>
+
+    <div class="welkomsbericht">
+        <h1>Welkom, <?php echo $_SESSION['username']; ?></h1> 
+    </div>
+
+<?php else : ?>
+
+      <div class="containerlogin">
+      <form action="login.php" method="POST">
           <img class="logo" 
           src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" 
           alt="FitForFun Logo">
@@ -110,9 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="submit" value="Inloggen">
             </form>
 
-            <?php elseif (isset($_SESSION['username'])) : ?>
-            <div class="containerlogin">
-        
             <?php
 
             if (isset($_SESSION['error_message'])) {
@@ -125,13 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 unset($_SESSION['error_message2']);
             }
             ?>
+
+       
             
-
-
-
-
         <?php endif; ?>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
