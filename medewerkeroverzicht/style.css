@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0047AB !important;
+    background-size: cover;
+    background-position: center;
+    padding-top: 80px;
+}
+ 
+h1 {
+    color: rgb(0, 0, 0) !important;
+    text-align: center;
+}
+ 
+.navbar {
+    background-color: #0047AB;
+    border-bottom: 1px solid black;
+}
+.navbar .logo {
+    width: 38px;
+    height: 38px;
+    margin-right: 15px;
+}
+ 
+.nav-item {
+    color: white;
+    margin: 5px;
+}
+ 
+.nav-link {
+    color: white !important;
+}
+ 
+
+/* container first */
+
+.containerfirst {
+    height: auto;
+}
+
+.Subtitle {
+    max-width: 1000px;
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+#textcontainer {
+    background-color: #003380;
+    margin: 80px auto;
+    max-width: 1300px;
+    height: 500px;
+    position: relative;
+    height: auto;
+}
+
+.customcard-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 80px;
+    position: relative;
+    top: 60%;
+    width: 100%;
+}
+
+.customcard {
+    background-color: rgb(158, 158, 158);
+    text-align: center;
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px;
+}
+
+.btncard {
+    position: absolute;
+    top: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.container-table {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+.container-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+}
+
+.container-table table tr td {
+    border: 1px solid black;
+}
+.container-table table tr th {
+    border: 1px solid black;
+}
+
+.container-table table tr:nth-child(odd) td {
+    background-color: rgb(181, 177, 177);
+}
+
