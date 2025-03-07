@@ -91,10 +91,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
       </div>
     </div>
-  </nav>
 
-    <?php if (!isset($_SESSION['username'])): ?>
+</nav>
+
+    <?php if (!isset($_SESSION['username'])) : ?>
         <div class="containerlogin">
+          
+        <form action="login.php" method="POST">
+          <img class="logo" 
+          src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" 
+          alt="FitForFun Logo">
+          <br>
+                <label for="username">Gebruikersnaam:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required><br>
+                <br>
+                <input type="submit" value="Inloggen">
+            </form>
+
+            <?php elseif (isset($_SESSION['username'])) : ?>
+            <div class="containerlogin">
+        
             <?php
 
             if (isset($_SESSION['error_message'])) {
@@ -107,18 +125,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 unset($_SESSION['error_message2']);
             }
             ?>
+            
 
 
-            <form action="login.php" method="POST">
-                <label for="username">Gebruikersnaam:</label>
-                <input type="text" id="username" name="username" required><br>
-                <label for="password">Wachtwoord:</label>
-                <input type="password" id="password" name="password" required><br>
-                <input type="submit" value="Inloggen">
-            </form>
+
+
         <?php endif; ?>
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
