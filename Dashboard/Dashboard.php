@@ -49,7 +49,7 @@
             <a class="nav-link" href="../lessonkalender/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Dashboard/Dashboard.php">Overzicht</a>
+            <a class="nav-link" href="../Dashboard/Dashboard.php">Management Dashboard</a>
           </li>
             </ul>
     
