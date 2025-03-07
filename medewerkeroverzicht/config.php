@@ -1,5 +1,6 @@
 <?php
 /**
+ * config.php
  * in dit bestand staan de inloggegevens van de database
  */
 
