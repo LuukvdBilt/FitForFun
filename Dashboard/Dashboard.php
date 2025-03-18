@@ -21,7 +21,7 @@
       <div class="col-4">
         <div class="list-group">
           <a href="../AccountsOverzicht/login.php" class="list-group-item list-group-item-action">Accounts Overzicht</a>
-          <a href="#" class="list-group-item list-group-item-action">Overzicht aantal leden per periode</a>
+          <a href="../PerPeriode/AccountPerPeriode.php" class="list-group-item list-group-item-action">Overzicht aantal leden per periode</a>
           <a href="../MedewerkerOverzicht/MedewerkerOverzicht.php" class="list-group-item list-group-item-action">Medewerker Overzicht</a>
         </div>
       </div>
