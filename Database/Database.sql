@@ -31,7 +31,7 @@ INSERT INTO users (username, password, role) VALUES
 ('Jordy', 'JordyPass123!', 'GastGebruiker'),
 ('Thijs', 'ThijsPass456!', 'GastGebruiker'),
 ('Jeroen', 'JeroenPass789!', 'Lid'),
-('Jesse', 'JessePass012!', 'Lid');
+('Jesse', 'JessePass012!', 'Lid'),
 ('Ahmed', 'AhmedPass123!', 'MedeWerker'),
 ('Ismael', 'IsmaelPass123!', 'MedeWerker'),
 ('Wessel', 'WesselPass123!', 'MedeWerker'),
