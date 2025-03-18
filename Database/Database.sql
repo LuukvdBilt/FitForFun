@@ -31,7 +31,7 @@ INSERT INTO users (username, password, role) VALUES
 ('Jordy', 'JordyPass123!', 'GastGebruiker'),
 ('Thijs', 'ThijsPass456!', 'GastGebruiker'),
 ('Jeroen', 'JeroenPass789!', 'Lid'),
-('Jesse', 'JessePass012!', 'Lid');
+('Jesse', 'JessePass012!', 'Lid'),
 ('Ahmed', 'AhmedPass123!', 'MedeWerker'),
 ('Ismael', 'IsmaelPass123!', 'MedeWerker'),
 ('Wessel', 'WesselPass123!', 'MedeWerker'),
@@ -103,6 +103,7 @@ VALUES
 ,('Lars', NULL, 'Hansen', '0645678901', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Ming', NULL, 'Li', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
+,('Mingo', NULL, 'lido', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
 
 CREATE TABLE LidOverzicht
 (

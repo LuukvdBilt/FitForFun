@@ -16,6 +16,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_OBJ);
+        //test
 ?>
 
 <!DOCTYPE html>
