@@ -67,6 +67,7 @@
   </nav>
 
   <div class="container-table">
+    <button onclick="window.location.href='create.php'">Nieuwe medewerker toevoegen</button>
     <h1>Medewerker Overzicht</h1>
     <table>
       <tr>
