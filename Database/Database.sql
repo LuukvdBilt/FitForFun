@@ -103,4 +103,5 @@ VALUES
 ,('Lars', NULL, 'Hansen', '0645678901', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Ming', NULL, 'Li', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
+,('Mingo', NULL, 'lido', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
 
