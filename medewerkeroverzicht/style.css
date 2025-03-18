@@ -1,0 +1,124 @@
+/**
+* Complete CSS file for the medewerkeroverzicht page
+*/
+body {
+    font-family: Arial, sans-serif; /* Sets the font family for the body */
+    background-color: #0047AB !important; /* Sets the background color of the body */
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    padding-top: 80px; /* Adds padding to the top of the body */
+}
+ 
+h1 {
+    color: rgb(0, 0, 0) !important; /* Sets the color of h1 elements */
+    text-align: center; /* Centers the text of h1 elements */
+}
+ 
+.navbar {
+    background-color: #0047AB; /* Sets the background color of the navbar */
+    border-bottom: 1px solid black; /* Adds a black border at the bottom of the navbar */
+}
+.navbar .logo {
+    width: 38px; /* Sets the width of the logo */
+    height: 38px; /* Sets the height of the logo */
+    margin-right: 15px; /* Adds right margin to the logo */
+}
+ 
+.nav-item {
+    color: white; /* Sets the color of nav items */
+    margin: 5px; /* Adds margin around nav items */
+}
+ 
+.nav-link {
+    color: white !important; /* Sets the color of nav links */
+}
+ 
+/* Container first */
+.containerfirst {
+    height: auto; /* Sets the height of the container to auto */
+}
+
+.Subtitle {
+    max-width: 1000px; /* Sets the maximum width of the subtitle */
+    margin: 20px auto; /* Centers the subtitle with margin */
+    text-align: center; /* Centers the text of the subtitle */
+    color: white; /* Sets the color of the subtitle text */
+    font-size: 40px; /* Sets the font size of the subtitle */
+    font-weight: bold; /* Makes the subtitle text bold */
+    padding: 20px; /* Adds padding around the subtitle */
+}
+
+#textcontainer {
+    background-color: #003380; /* Sets the background color of the text container */
+    margin: 80px auto; /* Centers the text container with margin */
+    max-width: 1300px; /* Sets the maximum width of the text container */
+    height: 500px; /* Sets the height of the text container */
+    position: relative; /* Sets the position to relative */
+    height: auto; /* Sets the height to auto */
+}
+
+.customcard-container {
+    display: flex; /* Uses flexbox for layout */
+    justify-content: center; /* Centers the custom cards horizontally */
+    flex-wrap: wrap; /* Allows the custom cards to wrap to the next line */
+    gap: 80px; /* Adds space between custom cards */
+    position: relative; /* Sets the position to relative */
+    top: 60%; /* Positions the container 60% from the top */
+    width: 100%; /* Sets the width to 100% */
+}
+
+.customcard {
+    background-color: rgb(158, 158, 158); /* Sets the background color of custom cards */
+    text-align: center; /* Centers the text inside custom cards */
+    margin: 20px; /* Adds margin around custom cards */
+    width: 300px; /* Sets the width of custom cards */
+    height: 300px; /* Sets the height of custom cards */
+    display: inline-block; /* Displays custom cards as inline-block */
+    vertical-align: top; /* Aligns custom cards to the top */
+    padding: 20px; /* Adds padding inside custom cards */
+}
+
+.btncard {
+    position: absolute; /* Sets the position to absolute */
+    top: 70%; /* Positions the button 70% from the top */
+    transform: translate(-50%, -50%); /* Centers the button */
+}
+
+.container-table {
+    max-width: 1000px; /* Sets the maximum width of the table container */
+    margin: 0 auto; /* Centers the table container */
+    background: rgb(255, 255, 255); /* Sets the background color of the table container */
+    border-radius: 10px; /* Rounds the corners of the table container */
+    position: relative; /* Sets the position to relative */
+}
+
+.container-table table {
+    width: 100%; /* Sets the width of the table to 100% */
+    border-collapse: collapse; /* Collapses table borders */
+    border-spacing: 0; /* Removes spacing between table cells */
+    color: rgb(0, 0, 0); /* Sets the text color of the table */
+    border: 1px solid black; /* Adds a black border around the table */
+}
+
+.container-table table tr td {
+    border: 1px solid black; /* Adds a black border around table cells */
+}
+.container-table table tr th {
+    border: 1px solid black; /* Adds a black border around table headers */
+}
+
+.container-table table tr:nth-child(odd) td {
+    background-color: rgb(181, 177, 177); /* Sets the background color of odd table rows */
+}
+
+.button {
+    color: #003380; /* Sets the text color of the button */
+    padding: 10px 20px; /* Adds padding inside the button */
+    border-radius: 5px; /* Rounds the corners of the button */
+    text-decoration: none; /* Removes underline from button text */
+    display: inline-block; /* Displays the button as inline-block */
+    margin: 10px; /* Adds margin around the button */
+    position: absolute; /* Sets the position to absolute */
+    top: 5px; /* Positions the button 5px from the top */
+    right: 5px; /* Positions the button 5px from the right */
+}

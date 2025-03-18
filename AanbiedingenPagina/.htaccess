@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^$ aanbiedingen.php [L]

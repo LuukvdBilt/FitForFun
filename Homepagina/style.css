@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, sans-serif; /* Body font */
+    background-color: #0047AB !important; /* Background color */
+    background-size: cover; /* Background size */
+    background-position: center; /* Background position */
+    padding: 0%; /* Padding */
+}
+
+.blacklayer {
+    background-color: black; /* Set background color to black */
+    opacity: 0.7; /* Set opacity */
+    position: absolute; /* Set position to absolute */
+    top: 0; /* Set top position */
+    left: 0; /* Set left position */
+    width: 100%; /* Set width to 100% */
+    height: 100%; /* Set height to 100% */
+}
+
+.normalfont {
+    color: white; /* Text color */
+    font-size: 16px; /* Font size */
+}
+
+.Subtitle {
+    max-width: 1000px; /* Max width */
+    margin: 20px auto; /* Center element */
+    text-align: center; /* Text alignment */
+    color: white; /* Text color */
+    font-weight: bold; /* Make the font bold */
+    padding: 20px; /* Add padding */
+}
+
+.white {
+    color: white; /* Set text color to white */
+}
+
+.black {
+    color: black; /* Set text color to black */
+}
+
+.navbar {
+    background-color: #0047AB; /* Set background color */
+    border-bottom: 1px solid black; /* Add a bottom border */
+}
+
+.navbar .logo {
+    width: 38px; /* Set width */
+    height: 38px; /* Set height */
+    margin-right: 15px; /* Add right margin */
+}
+
+.nav-item {
+    color: white; /* Set text color to white */
+    margin: 5px; /* Add margin */
+}
+
+.nav-link {
+    color: white !important; /* Set text color to white and make it important */
+}
+
+/* container first */
+
+.firstsection {
+    width: 100%; /* Set width to 100% */
+    height: 100vh; /* Set height to 100% of the viewport height */
+    background-image: url('https://youfit.com/wp-content/uploads/2024/06/YouFit-06-20-22-2527-Edit.jpg'); /* Set background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    position: relative; /* Set position to relative */
+    top: 0; /* Set top position */
+    margin: 0; /* Remove margin */
+    overflow: hidden; /* Hide overflow */
+}
+
+.buttonfirstpage {
+    position: absolute; /* Set position to absolute */
+    left: 50%; /* Center horizontally */
+    top: 80%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center the element */
+}
+
+.btnbasics{
+    background-color: #FFA500; /* Set background color to black */
+    color: black; /* Set text color to white */
+    border: 2px solid black; /* Add a border */
+    padding: 10px 20px; /* Add padding */
+    text-align: center; /* Center text */
+    border-radius: 10px; /* Add border radius */
+}
+
+.tekstcontainer {
+    background-color: black; /* Set background color to black */
+    border: 6px solid #0047AB; /* Add a border */
+    padding: 80px; /* Add padding */
+    opacity: 0.7; /* Set opacity */
+    position: absolute; /* Set position to absolute */
+    left: 50%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    max-width: 1100px; /* Set maximum width */
+    height: auto; /* Set height to auto */
+    transform: translate(-50%, -50%); /* Center the element */
+    color: white; /* Set text color to white */
+}
+
+.secondsection {
+    width: 100%;
+    height: 35vh;
+    padding: 50px;
+    background-color: #0047AB;
+    color: white;
+    position: relative;
+    top: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 35px;
+    border: 2px solid black;
+}
+
+/*
+third section*/
+
+.thirdsection {
+    height: auto;
+    background-image: url('https://images.everydayhealth.com/images/healthy-living/fitness/everything-you-need-know-about-fitness-1440x810.jpg'); /* Set background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    color: white;
+    padding-top: 50px;
+    user-select: none;
+    position: relative;
+}
+
+.thirdsection h1 {
+    text-align: center;
+    position: relative; /* Ensure h1 is positioned relative to its container */
+    z-index: 1; /* Place h1 above the blacklayer */
+    color: white; /* Set text color to white */
+}
+
+/* fourth section */
+
+.fourthsection {
+    height: auto;
+    background-color: #0047AB;
+    color: white;
+    padding-top: 50px;
+    user-select: none;
+    position: relative;
+    padding: 40px;
+    margin-bottom: 10px; /* Increase margin to create more distance between the footer and the container */
+}
+
+.fourthsection .card {
+    background-color: white; /* Set background color to white */
+    color: black; /* Set text color to black */
+    padding: 20px; /* Add padding */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 10px; /* Add border radius */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 50%; /* Set width */
+    height: 500px; /* Set height */
+}
+
+.fourthsection .cardimage1 {
+    background-image: url('https://fitnesscfgyms.com/wp-content/uploads/2021/10/fitness-center.jpeg'); /* Placeholder image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+}
+
+.fourthsection .cardimage2 {
+    background-image: url('https://deworkout.nl/wp-content/uploads/2021/10/sweat-1024x682.jpg'); /* Placeholder image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+}
+/* media queries */
+
+@media screen and (max-width: 1200px) {
+    .tekstcontainer {
+        padding: 30px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .tekstcontainer {
+        padding: 10px; /* Adjust padding for even smaller screens */
+
+    }
+    .secondsection {
+        height: 5vh; /* Adjust height for smaller screens */
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .tekstcontainer {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
