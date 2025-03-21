@@ -40,6 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
+          
             </ul>
     
             <ul class="navbar-nav">
@@ -60,6 +61,7 @@
           <a href="../AccountsOverzicht/login.php" class="list-group-item list-group-item-action">Accounts Overzicht</a>
           <a href="../PerPeriode/AccountPerPeriode.php" class="list-group-item list-group-item-action">Overzicht aantal leden per periode</a>
           <a href="../MedewerkerOverzicht/MedewerkerOverzicht.php" class="list-group-item list-group-item-action">Medewerker Overzicht</a>
+          <a href="../LedenOverzicht/LedenOverzicht.php" class="list-group-item list-group-item-action">Leden Overzicht</a>
         </div>
       </div>
       <div class="col-4"></div>
