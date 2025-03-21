@@ -55,7 +55,7 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
             <a class="nav-link" href="../Geplande-lessen/index.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
         </ul>
 
