@@ -236,36 +236,3 @@ VALUES
 ('Wessel', 'Van der', 'Meer', 'wessel@example.com', 'Wachtwoord789!', 1, NULL, NOW(6), NOW(6));
 
 
-CREATE TABLE lidoverzicht (
-    Id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Voornaam VARCHAR(150) NOT NULL,
-    Tussenvoegsel VARCHAR(50) NULL,
-    Achternaam VARCHAR(150) NOT NULL,
-    Lid_Sinds DATE NOT NULL
-) ENGINE=InnoDB;
-
-INSERT INTO lidoverzicht (Voornaam, Tussenvoegsel, Achternaam, Lid_Sinds) VALUES
-('Jeroen', NULL, 'Kramer', '2025-01-30'),
-('Jesse', NULL, 'Kramer', '2025-02-01'),
-('Ahmed', NULL, 'Ali', '2025-02-05'),
-('Ismael', NULL, 'Hassan', '2025-02-10'),
-('Wessel', NULL, 'De Boer', '2025-02-15'),
-('Wessel', NULL, 'De Boer', '2025-01-30'),
-('Mark', NULL, 'Smith', '2025-02-01'),
-('Daniel', NULL, 'Johnson', '2025-02-05'),
-('Sophie', NULL, 'Williams', '2025-02-10'),
-('Lucas', NULL, 'Brown', '2025-02-15'),
-('Emma', NULL, 'Jones', '2025-02-20'),
-('Mila', NULL, 'Garcia', '2025-02-25'),
-('Noah', NULL, 'Martinez', '2025-03-01'),
-('Eva', NULL, 'Rodriguez', '2025-03-05'),
-('Liam', NULL, 'Hernandez', '2025-03-10'),
-('Julia', NULL, 'Lopez', '2025-03-15'),
-('Finn', NULL, 'Gonzalez', '2025-03-20'),
-('Tess', NULL, 'Wilson', '2025-03-25'),
-('Carlos', NULL, 'Anderson', '2025-03-30'),
-('Yuki', NULL, 'Thomas', '2025-01-30'),
-('Aisha', NULL, 'Taylor', '2025-02-01'),
-('Lars', NULL, 'Moore', '2025-02-05'),
-('Sofia', NULL, 'Jackson', '2025-02-10'),
-('Ming', NULL, 'Martin', '2025-02-15');
