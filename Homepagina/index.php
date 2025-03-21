@@ -33,19 +33,16 @@
             <a class="nav-link" href="../LesOverzicht/public/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
         </ul>
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i> Winkelwagen</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
+            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
           </li>
         </ul>
       </div>

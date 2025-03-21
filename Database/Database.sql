@@ -159,3 +159,36 @@ VALUES
 ('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
+
+
+
+CREATE TABLE AccountAanmaken
+(
+    Id               INT(3)          UNSIGNED               NOT NULL   AUTO_INCREMENT,
+    Voornaam         VARCHAR(150)                           NOT NULL,
+    Tussenvoegsel    VARCHAR(50)                            NULL,
+    Achternaam       VARCHAR(150)                           NOT NULL,
+    Email            VARCHAR(180)                           NOT NULL,
+    Wachtwoord       VARCHAR(255)                           NOT NULL,
+    IsActief         BIT                                    NOT NULL    DEFAULT 1,
+    Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
+    DatumAangemaakt  DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6),
+    DatumGewijzigd   DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    CONSTRAINT       PK_AccountAanmaken_Id                  PRIMARY KEY (Id)
+) ENGINE=InnoDB;
+
+INSERT INTO AccountAanmaken
+(
+    Voornaam,
+    Tussenvoegsel,
+    Achternaam,
+    Email,
+    Wachtwoord,
+    IsActief,
+    Opmerking,
+    DatumAangemaakt,
+    DatumGewijzigd
+)
+VALUES
+('John', NULL, 'Doe', 'john.doe@example.com', 'password123', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Jane', 'van', 'Smith', 'jane.smith@example.com', 'password456', 1, NULL, SYSDATE(6), SYSDATE(6));

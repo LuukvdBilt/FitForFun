@@ -8,12 +8,13 @@
     $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
     $pdo = new PDO($dsn, $dbUser, $dbPass);
 
-    // Check if the person already exists
-    $checkSql = "SELECT COUNT(*) FROM AccountAanmaken WHERE Voornaam = :voornaam AND Tussenvoegsel = :tussenvoegsel AND Achternaam = :achternaam";
+    // Check if the person or email already exists
+    $checkSql = "SELECT COUNT(*) FROM AccountAanmaken WHERE (Voornaam = :voornaam AND Tussenvoegsel = :tussenvoegsel AND Achternaam = :achternaam) OR Email = :email";
     $checkStatement = $pdo->prepare($checkSql);
     $checkStatement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
     $checkStatement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
     $checkStatement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
+    $checkStatement->bindValue(':email', $_POST['Email'], PDO::PARAM_STR);
     $checkStatement->execute();
     $count = $checkStatement->fetchColumn();
 
@@ -66,7 +67,7 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Medewerker Overzicht</title>
+  <title>Account Aanmaken</title>
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -92,7 +93,7 @@
 
     <div class="row mb-1">
     <div class="col-3"></div>
-    <div class="col-6 text-primary"><h3>Voer een nieuwe medewerker in</h3></div>
+    <div class="col-6 text-primary"><h3>Voer een nieuwe gastgebruiker in</h3></div>
     <div class="col-3"></div>
     </div>
 
@@ -102,7 +103,7 @@
         <form action="create.php" method="POST">
         <div class="mb-3">
           <label for="voornaam" class="form-label">Voornaam</label>
-          <input name="voornaam" type="text" class="form-control" id="voornaamGastgebruiker" placeholder="Naam van de gastgebruikerr">
+          <input name="voornaam" type="text" class="form-control" id="voornaamGastgebruiker" placeholder="Naam van de gastgebruiker">
         </div>
         <div class="mb-3">
           <label for="tussenvoegsel" class="form-label">Tussenvoegsel</label>
@@ -114,7 +115,7 @@
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input name="Email" type="email" class="form-control" id="telefoonnummerMedwerker" placeholder="email van de gastgebruiker" min="0" max="100">
+          <input name="Email" type="email" class="form-control" id="emailGastgebruiker" placeholder="email van de gastgebruiker" min="0" max="100">
         </div>
         <div class="mb-3">
           <label for="wachtwoord" class="form-label">Wachtwoord</label>
