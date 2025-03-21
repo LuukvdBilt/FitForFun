@@ -160,6 +160,40 @@ VALUES
 ('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
 
+<<<<<<< HEAD
+
+
+CREATE TABLE AccountAanmaken
+(
+    Id               INT(3)          UNSIGNED               NOT NULL   AUTO_INCREMENT,
+    Voornaam         VARCHAR(150)                           NOT NULL,
+    Tussenvoegsel    VARCHAR(50)                            NULL,
+    Achternaam       VARCHAR(150)                           NOT NULL,
+    Email            VARCHAR(180)                           NOT NULL,
+    Wachtwoord       VARCHAR(255)                           NOT NULL,
+    IsActief         BIT                                    NOT NULL    DEFAULT 1,
+    Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
+    DatumAangemaakt  DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6),
+    DatumGewijzigd   DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    CONSTRAINT       PK_AccountAanmaken_Id                  PRIMARY KEY (Id)
+) ENGINE=InnoDB;
+
+INSERT INTO AccountAanmaken
+(
+    Voornaam,
+    Tussenvoegsel,
+    Achternaam,
+    Email,
+    Wachtwoord,
+    IsActief,
+    Opmerking,
+    DatumAangemaakt,
+    DatumGewijzigd
+)
+VALUES
+('John', NULL, 'Doe', 'john.doe@example.com', 'password123', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Jane', 'van', 'Smith', 'jane.smith@example.com', 'password456', 1, NULL, SYSDATE(6), SYSDATE(6));
+=======
 CREATE TABLE Les (
     Id INT NOT NULL AUTO_INCREMENT,
     Naam VARCHAR(50) NOT NULL,
@@ -211,3 +245,4 @@ VALUES
 (3, 'Klaas', 'de', 'Boer', 456789123, 3, '2023-10-07', '14:00:00', 'Gereserveerd', 1, 'Pilates liefhebber.', '2023-09-08 10:00:00', '2023-09-08 10:00:00'),
 (4, 'Griet', 'van', 'Buren', 789123456, 4, '2023-10-08', '18:00:00', 'Gereserveerd', 1, 'Liefhebber van Zumba.', '2023-09-09 11:00:00', '2023-09-09 11:00:00'),
 (5, 'Anne', 'de', 'Jong', 321654987, 5, '2023-10-09', '19:30:00', 'Gereserveerd', 1, 'Kickboksen voor conditie.', '2023-09-10 12:00:00', '2023-09-10 12:00:00');
+>>>>>>> 24e7b4169370d5798ef4b6df7cb75a2b89d3cbe4

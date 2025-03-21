@@ -40,19 +40,19 @@
           <li class="nav-item">
             <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
-        </ul>
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+            </ul>
+    
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../PerPeriode/create.php">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
   <div class="container-fluid">
     <div class="row">
