@@ -61,13 +61,10 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i> Winkelwagen</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
           </li>
         </ul>
       </div>
