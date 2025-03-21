@@ -30,7 +30,7 @@
             <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Geplande-lessen/index.php">Geplande lessen</a>
+            <a class="nav-link" href="../LesOverzicht/public/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
