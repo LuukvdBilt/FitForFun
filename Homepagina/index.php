@@ -39,7 +39,7 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../PerPeriode/create.php">Register</a>

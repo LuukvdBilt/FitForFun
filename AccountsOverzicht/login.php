@@ -82,10 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
+            <a class="nav-link" href="../AccountsOverzicht/logout.php">uitloggen</a>
           </li>
         </ul>
       </div>
@@ -95,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php if (isset($_SESSION['username'])) : ?>
 
     <div class="welkomsbericht">
-        <h1>Welkom, <?php echo $_SESSION['username']; ?></h1> 
+        <h1>Welkom, <?php echo $_SESSION['username']; ?></h1>
+       
     </div>
 
 <?php else : ?>
