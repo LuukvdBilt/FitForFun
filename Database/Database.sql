@@ -228,74 +228,11 @@ CREATE TABLE AccountAanmaken (
     DatumGewijzigd  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB;
 
-INSERT INTO LedenOverzicht
-(
-    Voornaam,
-    Tussenvoegsel,
-    Achternaam,
-    Relatienummer,
-    Mobiel,
-    Email,
-    IsActief,
-    Opmerking,
-    DatumAangemaakt,
-    DatumGewijzigd
-)
-VALUES
-('Jeroen', 'van', 'Bakker', 'REL001', '0612345678', 'jeroen.bakker@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Jesse', NULL, 'Jansen', 'REL002', '0623456789', 'jesse.jansen@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ahmed', NULL, 'Ali', 'REL003', '0634567890', 'ahmed.ali@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ismael', 'el', 'Hassan', 'REL004', '0645678901', 'ismael.hassan@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Wessel', 'de', 'Vries', 'REL005', '0656789012', 'wessel.devries@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mark', NULL, 'Johnson', 'REL006', '0667890123', 'mark.johnson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Daniel', NULL, 'Smith', 'REL007', '0678901234', 'daniel.smith@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sophie', NULL, 'Williams', 'REL008', '0689012345', 'sophie.williams@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Lucas', 'de', 'Brown', 'REL009', '0690123456', 'lucas.brown@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Emma', 'van der', 'Jones', 'REL010', '0601234567', 'emma.jones@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mila', NULL, 'Davis', 'REL011', '0612345678', 'mila.davis@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Noah', 'de', 'Martinez', 'REL012', '0623456789', 'noah.martinez@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Eva', 'del', 'Garcia', 'REL013', '0634567890', 'eva.garcia@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Liam', NULL, 'Rodriguez', 'REL014', '0645678901', 'liam.rodriguez@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Julia', 'van', 'Wilson', 'REL015', '0656789012', 'julia.wilson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Finn', NULL, 'Anderson', 'REL016', '0667890123', 'finn.anderson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Tess', NULL, 'Thomas', 'REL017', '0678901234', 'tess.thomas@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Carlos', 'de', 'Taylor', 'REL018', '0689012345', 'carlos.taylor@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Yuki', NULL, 'Moore', 'REL019', '0690123456', 'yuki.moore@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Aisha', NULL, 'Jackson', 'REL020', '0601234567', 'aisha.jackson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Lars', 'van', 'White', 'REL021', '0612345678', 'lars.white@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
+INSERT INTO AccountAanmaken 
+(Voornaam, Tussenvoegsel, Achternaam, Email, Wachtwoord, IsActief, Opmerking, DatumAangemaakt, DatumGewijzigd)
+VALUES 
+('Ahmed', NULL, 'Khasmiri', 'ahmed@example.com', 'Wachtwoord123!', 1, NULL, NOW(6), NOW(6)),
+('Ismael', 'El', 'Karamari', 'ismael@example.com', 'Wachtwoord456!', 1, NULL, NOW(6), NOW(6)),
+('Wessel', 'Van der', 'Meer', 'wessel@example.com', 'Wachtwoord789!', 1, NULL, NOW(6), NOW(6));
 
 
-
-CREATE TABLE AccountAanmaken
-(
-    Id               INT(3)          UNSIGNED               NOT NULL   AUTO_INCREMENT,
-    Voornaam         VARCHAR(150)                           NOT NULL,
-    Tussenvoegsel    VARCHAR(50)                            NULL,
-    Achternaam       VARCHAR(150)                           NOT NULL,
-    Email            VARCHAR(180)                           NOT NULL,
-    Wachtwoord       VARCHAR(255)                           NOT NULL,
-    IsActief         BIT                                    NOT NULL    DEFAULT 1,
-    Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
-    DatumAangemaakt  DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd   DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    CONSTRAINT       PK_AccountAanmaken_Id                  PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-INSERT INTO AccountAanmaken
-(
-    Voornaam,
-    Tussenvoegsel,
-    Achternaam,
-    Email,
-    Wachtwoord,
-    IsActief,
-    Opmerking,
-    DatumAangemaakt,
-    DatumGewijzigd
-)
-VALUES
-('John', NULL, 'Doe', 'john.doe@example.com', 'password123', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Jane', 'van', 'Smith', 'jane.smith@example.com', 'password456', 1, NULL, SYSDATE(6), SYSDATE(6));
