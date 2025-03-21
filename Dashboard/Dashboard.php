@@ -15,19 +15,8 @@
 <?php
  echo str_repeat("<br>", 2);
 ?>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4">
-        <div class="list-group">
-          <a href="../AccountsOverzicht/login.php" class="list-group-item list-group-item-action">Accounts Overzicht</a>
-          <a href="#" class="list-group-item list-group-item-action">Overzicht aantal leden per periode</a>
-          <a href="../MedewerkerOverzicht/MedewerkerOverzicht.php" class="list-group-item list-group-item-action">Medewerker Overzicht</a>
-        </div>
-      </div>
-      <div class="col-4"></div>
-
-      <nav class="navbar navbar-expand-lg fixed-top">
+  <!-- onze navbar !-->
+  <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <img class="logo"
               src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png"
@@ -64,6 +53,20 @@
           </div>
         </div>
       </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div class="list-group">
+          <!-- linking naar de Overzichten !-->
+          <a href="../AccountsOverzicht/login.php" class="list-group-item list-group-item-action">Accounts Overzicht</a>
+          <a href="../PerPeriode/AccountPerPeriode.php" class="list-group-item list-group-item-action">Overzicht aantal leden per periode</a>
+          <a href="../MedewerkerOverzicht/MedewerkerOverzicht.php" class="list-group-item list-group-item-action">Medewerker Overzicht</a>
+        </div>
+      </div>
+      <div class="col-4"></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>

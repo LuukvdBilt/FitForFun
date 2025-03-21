@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.buttonfirstpage').addEventListener('click', function() {
         window.location.href = '../AanbiedingenPagina/aanbiedingen.php';
     });
+=======
+// btncard href
+// test
+>>>>>>> f57d5144e69dff1444db3c36b4b6caacfb425cc7
 
     document.querySelectorAll('.btnbasics').forEach(function(button) {
         button.addEventListener('click', function() {
