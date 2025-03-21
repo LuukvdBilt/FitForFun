@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="nav-link" href="../lessonkalender/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Dashboard/Dashboard.php">Management Dashboard</a>
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
         </ul>
 
