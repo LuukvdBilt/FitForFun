@@ -54,10 +54,120 @@ INSERT INTO users (username, password, role) VALUES
 ('Sofia', 'SofiaPass123!', 'MedeWerker'),
 ('Ming', 'MingPass123!', 'MedeWerker');
 
+
+CREATE TABLE LidOverzicht
+(
+    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT
+    ,Voornaam        VARCHAR(150)                           NOT NULL
+    ,Tussenvoegsel   VARCHAR(50)                            NULL
+    ,Achternaam      VARCHAR(150)                           NOT NULL
+    ,Lid_Sinds       DATE                                   NOT NULL
+    ,CONSTRAINT      PK_LidOverzicht_Id                     PRIMARY KEY CLUSTERED(Id)
+) ENGINE=InnoDB;
+
+INSERT INTO LidOverzicht
+(
+         Voornaam
+        ,Tussenvoegsel
+        ,Achternaam
+        ,Lid_Sinds
+)
+VALUES
+('Jeroen', NULL, 'Kramer', '2025-01-30')
+,('Jesse', NULL, 'Kramer', '2025-02-01')
+,('Ahmed', NULL, 'Ali', '2025-02-05')
+,('Ismael', NULL, 'Hassan', '2025-02-10')
+,('Wessel', NULL, 'De Boer', '2025-02-15')
+,('Wessel', NULL, 'De Boer', '2025-01-30')
+,('Mark', NULL, 'Smith', '2025-02-01')
+,('Daniel', NULL, 'Johnson', '2025-02-05')
+,('Sophie', NULL, 'Williams', '2025-02-10')
+,('Lucas', NULL, 'Brown', '2025-02-15')
+,('Emma', NULL, 'Jones', '2025-02-20')
+,('Mila', NULL, 'Garcia', '2025-02-25')
+,('Noah', NULL, 'Martinez', '2025-03-01')
+,('Eva', NULL, 'Rodriguez', '2025-03-05')
+,('Liam', NULL, 'Hernandez', '2025-03-10')
+,('Julia', NULL, 'Lopez', '2025-03-15')
+,('Finn', NULL, 'Gonzalez', '2025-03-20')
+,('Tess', NULL, 'Wilson', '2025-03-25')
+,('Carlos', NULL, 'Anderson', '2025-03-30')
+,('Yuki', NULL, 'Thomas', '2025-01-30')
+,('Aisha', NULL, 'Taylor', '2025-02-01')
+,('Lars', NULL, 'Moore', '2025-02-05')
+,('Sofia', NULL, 'Jackson', '2025-02-10')
+,('Ming', NULL, 'Martin', '2025-02-15');
+
+CREATE TABLE LedenOverzicht
+(
+     Id              TINYINT             UNSIGNED           NOT NULL   AUTO_INCREMENT
+    ,Voornaam        VARCHAR(150)                           NOT NULL
+    ,Tussenvoegsel   VARCHAR(50)                            NULL
+    ,Achternaam      VARCHAR(150)                           NOT NULL
+    ,Leeftijd        TINYINT UNSIGNED                       NOT NULL
+    ,Geslacht        VARCHAR(180)                           NOT NULL   
+    ,IsActief        BIT                                    NOT NULL    DEFAULT 1
+    ,Opmerking       VARCHAR(255)                           NULL        DEFAULT NULL
+    ,DatumAangemaakt DATETIME(6)                            NOT NULL    
+    ,DatumGewijzigd  DATETIME(6)                            NOT NULL
+    ,CONSTRAINT      PK_LedenOverzicht_Id                   PRIMARY KEY CLUSTERED(Id)
+) ENGINE=InnoDB;
+
+
+INSERT INTO LedenOverzicht
+(
+         Voornaam
+        ,Tussenvoegsel
+        ,Achternaam
+        ,Leeftijd
+        ,Geslacht
+        ,IsActief
+        ,Opmerking
+        ,DatumAangemaakt
+        ,DatumGewijzigd
+)
+VALUES
+('Jan', NULL, 'Jansen', 25, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sanne', 'De', 'Vries', 30, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Pieter', 'van', 'Dijk', 22, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Emma', NULL, 'Bakker', 28, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lucas', NULL, 'Visser', 35, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sophie', 'Van', 'Smit', 27, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Daan', 'de', 'Boer', 32, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lotte', NULL, 'Mulder', 24, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Thomas', NULL, 'Dekker', 29, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Eva', NULL, 'Kok', 26, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Ruben', NULL, 'Meijer', 31, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Anna', 'van', 'Groot', 23, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Jesse', NULL, 'Bos', 34, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Julia', NULL, 'Vos', 25, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lars', NULL, 'Peters', 28, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Mila', NULL, 'Hendriks', 27, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Finn', NULL, 'Bruin', 33, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Noa', NULL, 'Leeuw', 22, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sem', 'De', 'Koning', 30, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Tess', NULL, 'Schouten', 24, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Milan', NULL, 'Graaf', 29, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Fleur', NULL, 'Lange', 26, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Niels', NULL, 'Ruiter', 28, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Roos', 'De', 'Wit', 27, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sven', NULL, 'Haan', 31, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lieke', NULL, 'Jong', 25, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Timo', NULL, 'Boer', 32, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sara', NULL, 'Vos', 24, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Joep', NULL, 'Vries', 29, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lina', 'Van der', 'Groot', 26, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Teun', NULL, 'Bruin', 33, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Maud', 'De', 'Leeuw', 22, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Rik', NULL, 'Koning', 30, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lara', NULL, 'Schouten', 24, 'F', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Joris', NULL, 'Graaf', 28, 'M', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Nina', NULL, 'Lange', 27, 'F', 1, NULL, SYSDATE(6), SYSDATE(6));
+
 CREATE TABLE MedewerkerOverzicht
 (
-    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
-    Voornaam         VARCHAR(150)                           NOT NULL
+    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT
+    ,Voornaam        VARCHAR(150)                           NOT NULL
     ,Tussenvoegsel   VARCHAR(50)                            NULL
     ,Achternaam      VARCHAR(150)                           NOT NULL
     ,Telefoonnummer  VARCHAR(180)                           NOT NULL
@@ -101,148 +211,28 @@ VALUES
 ,('Yuki', NULL, 'Tanaka', '0623456789', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Aisha', NULL, 'Khan', '0634567890', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Lars', NULL, 'Hansen', '0645678901', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Ming', NULL, 'Li', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Mingo', NULL, 'lido', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
+,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
 
-CREATE TABLE LedenOverzicht
-(
-    Id               INT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
-    Voornaam         VARCHAR(150)                           NOT NULL,
-    Tussenvoegsel    VARCHAR(50)                            NULL,
-    Achternaam       VARCHAR(150)                           NOT NULL,
-    Relatienummer    VARCHAR(50)                            NOT NULL,
-    Mobiel           VARCHAR(180)                           NOT NULL,
-    Email            VARCHAR(255)                           NOT NULL,
-    IsActief         BIT                                    NOT NULL    DEFAULT 1,
-    Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
-    DatumAangemaakt  DATETIME(6)                            NOT NULL,
-    DatumGewijzigd   DATETIME(6)                            NOT NULL,
-    CONSTRAINT       PK_LedenOverzicht_Id                   PRIMARY KEY CLUSTERED(Id)
+DROP TABLE IF EXISTS AccountAanmaken;
+
+CREATE TABLE AccountAanmaken (
+    Id               INT AUTO_INCREMENT PRIMARY KEY,
+    Voornaam        VARCHAR(150) NOT NULL,
+    Tussenvoegsel   VARCHAR(50) NULL,
+    Achternaam      VARCHAR(150) NOT NULL,
+    Email           VARCHAR(180) NOT NULL UNIQUE,
+    Wachtwoord      VARCHAR(255) NOT NULL,
+    IsActief        BIT NOT NULL DEFAULT 1,
+    Opmerking       VARCHAR(255) NULL DEFAULT NULL,
+    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    DatumGewijzigd  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB;
 
-INSERT INTO LedenOverzicht
-(
-    Voornaam,
-    Tussenvoegsel,
-    Achternaam,
-    Relatienummer,
-    Mobiel,
-    Email,
-    IsActief,
-    Opmerking,
-    DatumAangemaakt,
-    DatumGewijzigd
-)
-VALUES
-('Jeroen', 'van', 'Bakker', 'REL001', '0612345678', 'jeroen.bakker@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Jesse', NULL, 'Jansen', 'REL002', '0623456789', 'jesse.jansen@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ahmed', NULL, 'Ali', 'REL003', '0634567890', 'ahmed.ali@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ismael', 'el', 'Hassan', 'REL004', '0645678901', 'ismael.hassan@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Wessel', 'de', 'Vries', 'REL005', '0656789012', 'wessel.devries@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mark', NULL, 'Johnson', 'REL006', '0667890123', 'mark.johnson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Daniel', NULL, 'Smith', 'REL007', '0678901234', 'daniel.smith@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sophie', NULL, 'Williams', 'REL008', '0689012345', 'sophie.williams@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Lucas', 'de', 'Brown', 'REL009', '0690123456', 'lucas.brown@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Emma', 'van der', 'Jones', 'REL010', '0601234567', 'emma.jones@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mila', NULL, 'Davis', 'REL011', '0612345678', 'mila.davis@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Noah', 'de', 'Martinez', 'REL012', '0623456789', 'noah.martinez@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Eva', 'del', 'Garcia', 'REL013', '0634567890', 'eva.garcia@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Liam', NULL, 'Rodriguez', 'REL014', '0645678901', 'liam.rodriguez@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Julia', 'van', 'Wilson', 'REL015', '0656789012', 'julia.wilson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Finn', NULL, 'Anderson', 'REL016', '0667890123', 'finn.anderson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Tess', NULL, 'Thomas', 'REL017', '0678901234', 'tess.thomas@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Carlos', 'de', 'Taylor', 'REL018', '0689012345', 'carlos.taylor@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Yuki', NULL, 'Moore', 'REL019', '0690123456', 'yuki.moore@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Aisha', NULL, 'Jackson', 'REL020', '0601234567', 'aisha.jackson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Lars', 'van', 'White', 'REL021', '0612345678', 'lars.white@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
-
-<<<<<<< HEAD
+INSERT INTO AccountAanmaken 
+(Voornaam, Tussenvoegsel, Achternaam, Email, Wachtwoord, IsActief, Opmerking, DatumAangemaakt, DatumGewijzigd)
+VALUES 
+('Ahmed', NULL, 'Khasmiri', 'ahmed@example.com', 'Wachtwoord123!', 1, NULL, NOW(6), NOW(6)),
+('Ismael', 'El', 'Karamari', 'ismael@example.com', 'Wachtwoord456!', 1, NULL, NOW(6), NOW(6)),
+('Wessel', 'Van der', 'Meer', 'wessel@example.com', 'Wachtwoord789!', 1, NULL, NOW(6), NOW(6));
 
 
-CREATE TABLE AccountAanmaken
-(
-    Id               INT(3)          UNSIGNED               NOT NULL   AUTO_INCREMENT,
-    Voornaam         VARCHAR(150)                           NOT NULL,
-    Tussenvoegsel    VARCHAR(50)                            NULL,
-    Achternaam       VARCHAR(150)                           NOT NULL,
-    Email            VARCHAR(180)                           NOT NULL,
-    Wachtwoord       VARCHAR(255)                           NOT NULL,
-    IsActief         BIT                                    NOT NULL    DEFAULT 1,
-    Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
-    DatumAangemaakt  DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd   DATETIME(6)                            NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    CONSTRAINT       PK_AccountAanmaken_Id                  PRIMARY KEY (Id)
-) ENGINE=InnoDB;
-
-INSERT INTO AccountAanmaken
-(
-    Voornaam,
-    Tussenvoegsel,
-    Achternaam,
-    Email,
-    Wachtwoord,
-    IsActief,
-    Opmerking,
-    DatumAangemaakt,
-    DatumGewijzigd
-)
-VALUES
-('John', NULL, 'Doe', 'john.doe@example.com', 'password123', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Jane', 'van', 'Smith', 'jane.smith@example.com', 'password456', 1, NULL, SYSDATE(6), SYSDATE(6));
-=======
-CREATE TABLE Les (
-    Id INT NOT NULL AUTO_INCREMENT,
-    Naam VARCHAR(50) NOT NULL,
-    Datum DATE NOT NULL,
-    Tijd TIME NOT NULL,
-    MinAantalPersonen TINYINT NOT NULL,
-    MaxAantalPersonen TINYINT NOT NULL,
-    Beschikbaarheid VARCHAR(50) NOT NULL,
-    Prijs DECIMAL(10, 2) NOT NULL, -- Toegevoegd Prijs kolom
-    Isactief BIT NOT NULL,
-    Opmerking VARCHAR(250),
-    Datumaangemaakt DATETIME(6) NOT NULL,
-    Datumgewijzigd DATETIME(6) NOT NULL,
-    PRIMARY KEY (Id)
-);
-
--- Create the Reservering table
-CREATE TABLE Reservering (
-    Id INT NOT NULL AUTO_INCREMENT,
-    Voornaam VARCHAR(50) NOT NULL,
-    Tussenvoegsel VARCHAR(10),
-    Achternaam VARCHAR(50) NOT NULL,
-    Nummer MEDIUMINT NOT NULL,
-    LesId INT NOT NULL, -- Toegevoegd LesId kolom
-    Datum DATE NOT NULL,
-    Tijd TIME NOT NULL,
-    Reserveringstatus VARCHAR(20) NOT NULL,
-    Isactief BIT NOT NULL,
-    Opmerking VARCHAR(250),
-    Datumaangemaakt DATETIME(6) NOT NULL,
-    Datumgewijzigd DATETIME(6) NOT NULL,
-    PRIMARY KEY (Id),
-    FOREIGN KEY (LesId) REFERENCES Les(Id) -- Toegevoegd foreign key constraint
-);
-
--- Voorbeeldgegevens invoegen
-INSERT INTO Les (Id, Naam, Datum, Tijd, Beschikbaarheid, MinAantalPersonen, MaxAantalPersonen, Prijs, Isactief, Opmerking, Datumaangemaakt, Datumgewijzigd)
-VALUES
-(1, 'Yoga', '2023-10-05', '09:00:00', 'Ingepland', 3, 9, 15.00, 1, 'Breng een matje mee.', '2023-09-01 10:00:00', '2023-09-01 10:00:00'),
-(2, 'Spinning', '2023-10-06', '10:30:00', 'Ingepland', 2, 8, 20.00, 1, 'Intensieve sessie.', '2023-09-02 11:00:00', '2023-09-02 11:00:00'),
-(3, 'Pilates', '2023-10-07', '14:00:00', 'Ingepland', 4, 10, 18.00, 1, 'Geschikt voor alle niveaus.', '2023-09-03 12:00:00', '2023-09-03 12:00:00'),
-(4, 'Zumba', '2023-10-08', '18:00:00', 'Ingepland', 5, 12, 22.00, 1, 'Dansen en fit blijven!', '2023-09-04 13:00:00', '2023-09-04 13:00:00'),
-(5, 'Kickboksen', '2023-10-09', '19:30:00', 'Ingepland', 3, 10, 25.00, 1, 'Voor zowel beginners als gevorderden.', '2023-09-05 14:00:00', '2023-09-05 14:00:00');
-
-INSERT INTO Reservering (Id, Voornaam, Tussenvoegsel, Achternaam, Nummer, LesId, Datum, Tijd, Reserveringstatus, Isactief, Opmerking, Datumaangemaakt, Datumgewijzigd)
-VALUES
-(1, 'Jan', 'van', 'Janssen', 123456789, 1, '2023-10-05', '09:00:00', 'Gereserveerd', 1, 'Eerste keer Yoga.', '2023-09-06 08:00:00', '2023-09-06 08:00:00'),
-(2, 'Piet', '', 'Hein', 987654321, 2, '2023-10-06', '10:30:00', 'Gereserveerd', 1, 'Regelmatige spinner.', '2023-09-07 09:00:00', '2023-09-07 09:00:00'),
-(3, 'Klaas', 'de', 'Boer', 456789123, 3, '2023-10-07', '14:00:00', 'Gereserveerd', 1, 'Pilates liefhebber.', '2023-09-08 10:00:00', '2023-09-08 10:00:00'),
-(4, 'Griet', 'van', 'Buren', 789123456, 4, '2023-10-08', '18:00:00', 'Gereserveerd', 1, 'Liefhebber van Zumba.', '2023-09-09 11:00:00', '2023-09-09 11:00:00'),
-(5, 'Anne', 'de', 'Jong', 321654987, 5, '2023-10-09', '19:30:00', 'Gereserveerd', 1, 'Kickboksen voor conditie.', '2023-09-10 12:00:00', '2023-09-10 12:00:00');
->>>>>>> 24e7b4169370d5798ef4b6df7cb75a2b89d3cbe4
