@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['role'] = $user['role'];
         $stmt->close();
         $mysqli->close();
-        header("Location: AccountPerPeriode.php");
+        header("Location: ../Dashboard/Dashboard.php");
         exit;
     } else if ($user && ($user['role'] == "GastGebruiker" || $user['role'] == "Lid") && $user['password'] == $password) {
         $_SESSION['error_message'] = "<span style='color: red;'>U heeft geen toegang tot deze pagina.</span>";
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a class="nav-link" href="../lessonkalender/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Dashboard/Dashboard.php">Management Dashboard</a>
+            <a class="nav-link" href="../PerPeriode/login.php">Management Dashboard</a>
           </li>
         </ul>
 

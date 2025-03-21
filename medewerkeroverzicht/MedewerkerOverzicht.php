@@ -50,7 +50,7 @@
         <a class="nav-link" href="../lessonkalender/lessen.php">Geplande lessen</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../Dashboard/Dashboard.php">Overzicht</a>
+        <a class="nav-link" href="../Dashboard/Dashboard.php">Management Dashboard</a>
       </li>
         </ul>
 
@@ -59,7 +59,7 @@
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
           </li>
         </ul>
       </div>

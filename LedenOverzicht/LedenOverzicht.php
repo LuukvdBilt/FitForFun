@@ -33,7 +33,7 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <img class="logo"
         src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png"
@@ -52,22 +52,31 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
             <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Geplande-lessen/index.php">Geplande lessen</a>
+            <a class="nav-link" href="../LesOverzicht/public/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../AccountsOverzicht/login.php">Overzicht</a>
+            <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
         </ul>
 
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart"></i> Winkelwagen</a>
+            <a class="nav-link" href="#">Login</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+        <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
           </li>
         </ul>
       </div>
