@@ -70,18 +70,7 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
       </div>
     </div>
   </nav>
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  
   <div class="background">
   <button class="createbutton" onclick="window.location.href='create.php'">Nieuw lid toevoegen</button>
   <button class="searchbutton" onclick="toggleSearch()">zoek op achternaam</button>
@@ -99,6 +88,7 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
         <th>Relatienummer</th>
         <th>Mobiel</th>
         <th>Email</th>
+        <th>Edit</th>
       </tr>
       <?php foreach ($result as $row): ?>
         <tr>
@@ -108,6 +98,9 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
           <td><?php echo htmlspecialchars($row->Relatienummer); ?></td>
           <td><?php echo htmlspecialchars($row->Mobiel); ?></td>
           <td><?php echo htmlspecialchars($row->Email); ?></td>
+          <td>
+            <a href="edit.php?Relatienummer=<?php echo urlencode($row->Relatienummer); ?>" class="btn btn-primary btn-sm">Edit</a>
+          </td>
         </tr>
       <?php endforeach; ?>
     </table>
