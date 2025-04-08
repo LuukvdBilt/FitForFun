@@ -174,28 +174,106 @@ VALUES
 ,('Yuki', NULL, 'Tanaka', '0623456789', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Aisha', NULL, 'Khan', '0634567890', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Lars', NULL, 'Hansen', '0645678901', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
+,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Ming', NULL, 'Li', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Mingo', NULL, 'lido', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
 
-DROP TABLE IF EXISTS AccountAanmaken;
-
-CREATE TABLE AccountAanmaken (
-    Id               INT AUTO_INCREMENT PRIMARY KEY,
-    Voornaam        VARCHAR(150) NOT NULL,
-    Tussenvoegsel   VARCHAR(50) NULL,
-    Achternaam      VARCHAR(150) NOT NULL,
-    Email           VARCHAR(180) NOT NULL UNIQUE,
-    Wachtwoord      VARCHAR(255) NOT NULL,
-    IsActief        BIT NOT NULL DEFAULT 1,
-    Opmerking       VARCHAR(255) NULL DEFAULT NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd  DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+<<<<<<< HEAD
+CREATE TABLE LedenOverzicht
+(
+    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
+    Voornaam         VARCHAR(150)                           NOT NULL,
+    Tussenvoegsel    VARCHAR(50)                            NULL,
+    Achternaam       VARCHAR(150)                           NOT NULL,
+    Relatienummer    VARCHAR(50)                            NOT NULL,
+    Mobiel           VARCHAR(180)                           NOT NULL,
+    Email            VARCHAR(255)                           NOT NULL,
+    IsActief         BIT                                    NOT NULL    DEFAULT 1,
+    Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
+    DatumAangemaakt  DATETIME(6)                            NOT NULL,
+    DatumGewijzigd   DATETIME(6)                            NOT NULL,
+    CONSTRAINT       PK_LedenOverzicht_Id                   PRIMARY KEY CLUSTERED(Id)
 ) ENGINE=InnoDB;
 
-INSERT INTO AccountAanmaken 
-(Voornaam, Tussenvoegsel, Achternaam, Email, Wachtwoord, IsActief, Opmerking, DatumAangemaakt, DatumGewijzigd)
-VALUES 
-('Ahmed', NULL, 'Khasmiri', 'ahmed@example.com', 'Wachtwoord123!', 1, NULL, NOW(6), NOW(6)),
-('Ismael', 'El', 'Karamari', 'ismael@example.com', 'Wachtwoord456!', 1, NULL, NOW(6), NOW(6)),
-('Wessel', 'Van der', 'Meer', 'wessel@example.com', 'Wachtwoord789!', 1, NULL, NOW(6), NOW(6));
+INSERT INTO LedenOverzicht
+(
+    Voornaam,
+    Tussenvoegsel,
+    Achternaam,
+    Relatienummer,
+    Mobiel,
+    Email,
+    IsActief,
+    Opmerking,
+    DatumAangemaakt,
+    DatumGewijzigd
+)
+VALUES
+('Jeroen', 'van', 'Bakker', 'REL001', '0612345678', 'jeroen.bakker@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Jesse', NULL, 'Jansen', 'REL002', '0623456789', 'jesse.jansen@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Ahmed', NULL, 'Ali', 'REL003', '0634567890', 'ahmed.ali@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Ismael', 'el', 'Hassan', 'REL004', '0645678901', 'ismael.hassan@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Wessel', 'de', 'Vries', 'REL005', '0656789012', 'wessel.devries@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Mark', NULL, 'Johnson', 'REL006', '0667890123', 'mark.johnson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Daniel', NULL, 'Smith', 'REL007', '0678901234', 'daniel.smith@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Sophie', NULL, 'Williams', 'REL008', '0689012345', 'sophie.williams@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Lucas', 'de', 'Brown', 'REL009', '0690123456', 'lucas.brown@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Emma', 'van der', 'Jones', 'REL010', '0601234567', 'emma.jones@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Mila', NULL, 'Davis', 'REL011', '0612345678', 'mila.davis@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Noah', 'de', 'Martinez', 'REL012', '0623456789', 'noah.martinez@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Eva', 'del', 'Garcia', 'REL013', '0634567890', 'eva.garcia@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Liam', NULL, 'Rodriguez', 'REL014', '0645678901', 'liam.rodriguez@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Julia', 'van', 'Wilson', 'REL015', '0656789012', 'julia.wilson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Finn', NULL, 'Anderson', 'REL016', '0667890123', 'finn.anderson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Tess', NULL, 'Thomas', 'REL017', '0678901234', 'tess.thomas@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Carlos', 'de', 'Taylor', 'REL018', '0689012345', 'carlos.taylor@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Yuki', NULL, 'Moore', 'REL019', '0690123456', 'yuki.moore@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Aisha', NULL, 'Jackson', 'REL020', '0601234567', 'aisha.jackson@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Lars', 'van', 'White', 'REL021', '0612345678', 'lars.white@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
+=======
+CREATE TABLE LidOverzicht
+(
+    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT
+    ,Voornaam        VARCHAR(150)                           NOT NULL
+    ,Tussenvoegsel   VARCHAR(50)                            NULL
+    ,Achternaam      VARCHAR(150)                           NOT NULL
+    ,Lid_Sinds       DATE                                   NOT NULL
+    ,CONSTRAINT      PK_LidOverzicht_Id                     PRIMARY KEY CLUSTERED(Id)
+) ENGINE=InnoDB;
 
-
+INSERT INTO LidOverzicht
+(
+         Voornaam
+        ,Tussenvoegsel
+        ,Achternaam
+        ,Lid_Sinds
+)
+VALUES
+('Jeroen', NULL, 'Kramer', '2025-01-30')
+,('Jesse', NULL, 'Kramer', '2025-02-01')
+,('Ahmed', NULL, 'Ali', '2025-02-05')
+,('Ismael', NULL, 'Hassan', '2025-02-10')
+,('Wessel', NULL, 'De Boer', '2025-02-15')
+,('Wessel', NULL, 'De Boer', '2025-01-30')
+,('Mark', NULL, 'Smith', '2025-02-01')
+,('Daniel', NULL, 'Johnson', '2025-02-05')
+,('Sophie', NULL, 'Williams', '2025-02-10')
+,('Lucas', NULL, 'Brown', '2025-02-15')
+,('Emma', NULL, 'Jones', '2025-02-20')
+,('Mila', NULL, 'Garcia', '2025-02-25')
+,('Noah', NULL, 'Martinez', '2025-03-01')
+,('Eva', NULL, 'Rodriguez', '2025-03-05')
+,('Liam', NULL, 'Hernandez', '2025-03-10')
+,('Julia', NULL, 'Lopez', '2025-03-15')
+,('Finn', NULL, 'Gonzalez', '2025-03-20')
+,('Tess', NULL, 'Wilson', '2025-03-25')
+,('Carlos', NULL, 'Anderson', '2025-03-30')
+,('Yuki', NULL, 'Thomas', '2025-01-30')
+,('Aisha', NULL, 'Taylor', '2025-02-01')
+,('Lars', NULL, 'Moore', '2025-02-05')
+,('Sofia', NULL, 'Jackson', '2025-02-10')
+,('Ming', NULL, 'Martin', '2025-02-15');
+>>>>>>> f57d5144e69dff1444db3c36b4b6caacfb425cc7
