@@ -84,7 +84,7 @@
       </div>
       <?php else: ?>
       <div class="alert alert-success text-center" role="alert">
-        De nieuwe gastgebruiker is opgeslagen, u wordt doorgestuurd naar de Homepagina.
+        De nieuwe lid is opgeslagen, u wordt doorgestuurd naar de Homepagina.
       </div>
       <?php endif; ?>
     </div>
@@ -93,7 +93,7 @@
 
     <div class="row mb-1">
     <div class="col-3"></div>
-    <div class="col-6 text-primary"><h3>Voer een nieuwe gastgebruiker in</h3></div>
+    <div class="col-6 text-primary"><h3>Wordt nu lid van onze website!</h3></div>
     <div class="col-3"></div>
     </div>
 

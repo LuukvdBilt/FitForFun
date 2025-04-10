@@ -98,48 +98,20 @@ VALUES
 ,('Sofia', NULL, 'Jackson', '2025-02-10')
 ,('Ming', NULL, 'Martin', '2025-02-15');
 
-CREATE TABLE LedenOverzicht
-(
-     Id              TINYINT             UNSIGNED           NOT NULL   AUTO_INCREMENT
-    ,Voornaam        VARCHAR(150)                           NOT NULL
-    ,Tussenvoegsel   VARCHAR(50)                            NULL
-    ,Achternaam      VARCHAR(150)                           NOT NULL
-    ,RelatieNummer   INT                                    NOT NULL
-    ,Leeftijd        TINYINT             UNSIGNED           NOT NULL
-    ,Geslacht        VARCHAR(180)                           NOT NULL   
-    ,IsActief        BIT                                    NOT NULL    DEFAULT 1
-    ,Opmerking       VARCHAR(255)                           NULL        DEFAULT NULL
-    ,DatumAangemaakt DATETIME(6)                            NOT NULL    
-    ,DatumGewijzigd  DATETIME(6)                            NOT NULL
-    ,CONSTRAINT      PK_LedenOverzicht_Id                   PRIMARY KEY CLUSTERED(Id)
-) ENGINE=InnoDB;
-INSERT INTO LedenOverzicht
-(
-    Voornaam,
-    Tussenvoegsel,
-    Achternaam,
-    RelatieNummer,
-    Leeftijd,
-    Geslacht,
-    IsActief,
-    Opmerking,
-    DatumAangemaakt,
-    DatumGewijzigd
-)
-VALUES
-('Jan', NULL, 'Jansen', 1001, 25, 'M', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sanne', 'De', 'Vries', 1002, 30, 'F', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Pieter', 'van', 'Dijk', 1003, 22, 'M', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Emma', NULL, 'Bakker', 1004, 28, 'F', 1, NULL, SYSDATE(6), SYSDATE(6));
-    ,Tussenvoegsel   VARCHAR(50)                            NULL
-    ,Achternaam      VARCHAR(150)                           NOT NULL
-    ,Telefoonnummer  VARCHAR(180)                           NOT NULL
-    ,Werknemerrank   VARCHAR(180)                           NOT NULL
-    ,IsActief        BIT                                    NOT NULL    DEFAULT 1
-    ,Opmerking       VARCHAR(255)                           NULL        DEFAULT NULL
-    ,DatumAangemaakt DATETIME(6)                            NOT NULL    
-    ,DatumGewijzigd  DATETIME(6)                            NOT NULL
-    ,CONSTRAINT      PK_MedewerkerOverzicht_Id              PRIMARY KEY CLUSTERED(Id)
+
+
+   CREATE TABLE MedewerkerOverzicht (
+    Id              INT AUTO_INCREMENT                    NOT NULL,
+    Voornaam        VARCHAR(150)                          NOT NULL,
+    Tussenvoegsel   VARCHAR(50)                           NULL,
+    Achternaam      VARCHAR(150)                          NOT NULL,
+    Telefoonnummer  VARCHAR(180)                          NOT NULL,
+    Werknemerrank   VARCHAR(180)                          NOT NULL,
+    IsActief        BIT                                   NOT NULL DEFAULT 1,
+    Opmerking       VARCHAR(255)                          NULL DEFAULT NULL,
+    DatumAangemaakt DATETIME(6)                           NOT NULL,
+    DatumGewijzigd  DATETIME(6)                           NOT NULL,
+    CONSTRAINT PK_MedewerkerOverzicht_Id PRIMARY KEY CLUSTERED (Id)
 ) ENGINE=InnoDB;
 
 INSERT INTO MedewerkerOverzicht
@@ -178,7 +150,6 @@ VALUES
 ,('Ming', NULL, 'Li', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
 ,('Mingo', NULL, 'lido', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
 
-<<<<<<< HEAD
 CREATE TABLE LedenOverzicht
 (
     Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
@@ -233,47 +204,3 @@ VALUES
 ('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
-=======
-CREATE TABLE LidOverzicht
-(
-    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT
-    ,Voornaam        VARCHAR(150)                           NOT NULL
-    ,Tussenvoegsel   VARCHAR(50)                            NULL
-    ,Achternaam      VARCHAR(150)                           NOT NULL
-    ,Lid_Sinds       DATE                                   NOT NULL
-    ,CONSTRAINT      PK_LidOverzicht_Id                     PRIMARY KEY CLUSTERED(Id)
-) ENGINE=InnoDB;
-
-INSERT INTO LidOverzicht
-(
-         Voornaam
-        ,Tussenvoegsel
-        ,Achternaam
-        ,Lid_Sinds
-)
-VALUES
-('Jeroen', NULL, 'Kramer', '2025-01-30')
-,('Jesse', NULL, 'Kramer', '2025-02-01')
-,('Ahmed', NULL, 'Ali', '2025-02-05')
-,('Ismael', NULL, 'Hassan', '2025-02-10')
-,('Wessel', NULL, 'De Boer', '2025-02-15')
-,('Wessel', NULL, 'De Boer', '2025-01-30')
-,('Mark', NULL, 'Smith', '2025-02-01')
-,('Daniel', NULL, 'Johnson', '2025-02-05')
-,('Sophie', NULL, 'Williams', '2025-02-10')
-,('Lucas', NULL, 'Brown', '2025-02-15')
-,('Emma', NULL, 'Jones', '2025-02-20')
-,('Mila', NULL, 'Garcia', '2025-02-25')
-,('Noah', NULL, 'Martinez', '2025-03-01')
-,('Eva', NULL, 'Rodriguez', '2025-03-05')
-,('Liam', NULL, 'Hernandez', '2025-03-10')
-,('Julia', NULL, 'Lopez', '2025-03-15')
-,('Finn', NULL, 'Gonzalez', '2025-03-20')
-,('Tess', NULL, 'Wilson', '2025-03-25')
-,('Carlos', NULL, 'Anderson', '2025-03-30')
-,('Yuki', NULL, 'Thomas', '2025-01-30')
-,('Aisha', NULL, 'Taylor', '2025-02-01')
-,('Lars', NULL, 'Moore', '2025-02-05')
-,('Sofia', NULL, 'Jackson', '2025-02-10')
-,('Ming', NULL, 'Martin', '2025-02-15');
->>>>>>> f57d5144e69dff1444db3c36b4b6caacfb425cc7

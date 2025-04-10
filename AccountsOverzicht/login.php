@@ -81,8 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
 
         <ul class="navbar-nav">
+        <li class="nav-item">
+        <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="../AccountsOverzicht/logout.php">uitloggen</a>
+            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
           </li>
         </ul>
       </div>

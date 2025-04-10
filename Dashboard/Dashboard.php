@@ -45,7 +45,7 @@
     
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../PerPeriode/create.php">Uitloggen</a>
+                <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
               </li>
             </ul>
           </div>
@@ -58,7 +58,7 @@
       <div class="col-4">
         <div class="list-group">
           <!-- linking naar de Overzichten !-->
-          <a href="../AccountsOverzicht/login.php" class="list-group-item list-group-item-action">Accounts Overzicht</a>
+          <a href="../AccountsOverzicht/Home.php" class="list-group-item list-group-item-action">Accounts Overzicht</a>
           <a href="../PerPeriode/AccountPerPeriode.php" class="list-group-item list-group-item-action">Overzicht aantal leden per periode</a>
           <a href="../MedewerkerOverzicht/MedewerkerOverzicht.php" class="list-group-item list-group-item-action">Medewerker Overzicht</a>
           <a href="../LedenOverzicht/LedenOverzicht.php" class="list-group-item list-group-item-action">Leden Overzicht</a>
