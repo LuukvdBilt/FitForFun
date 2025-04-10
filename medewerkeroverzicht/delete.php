@@ -1,72 +1,38 @@
 <?php
-/**
- * We sluiten het configuratiebestand in bij de pagina
- * index.php
- */
-include('config.php');
+// database connectie
+$host = 'localhost';
+$db   = 'fitforfun'; // vervang met jouw database naam
+$user = 'root';      // of jouw db-gebruiker
+$pass = '';          // wachtwoord, laat leeg als er geen is
+$charset = 'utf8mb4';
 
-$dsn = "mysql:host=$dbHost;
-        dbname=$dbName;
-        charset=UTF8";
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+];
 
-/**
- * Maak een nieuw PDO-object aan zodat we een verbinding
- * kunnen maken met de mysql-server
- */
-$pdo = new PDO($dsn, $dbUser, $dbPass);
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    die("Database connectie faalde: " . $e->getMessage());
+}
 
-/**
- * De sql-query om een achtbaan record te verwijderen
- */
-$sql = "DELETE FROM medewerkeroverzicht AS MWOz
-        WHERE MWOz.Voornaam = :voornaamMedewerker";
+// check of het relatienummer is meegegeven
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Nummer'])) {
+    $Nummer = $_POST['Nummer'];
 
-/**
- * We moeten de sql-query voorbereiden voor de PDO class
- */
-$statement = $pdo->prepare($sql);
+    // delete query
+    $stmt = $pdo->prepare("DELETE FROM MedewerkerOverzicht WHERE Nummer = :nummer");
+    $stmt->bindParam(':nummer', $Nummer, PDO::PARAM_STR);
 
-/**
- * We koppelen aan de placeholder :id de waarde die we
- * via het $_GET-array hebben binnengekregen
- */
-$statement->bindValue(':id', $_GET['Id'], PDO::PARAM_INT);
-
-/**
- * We voeren de geprepareerde sql-query uit
- */
-$statement->execute();
-
-/**
- * We sturen de gebruiker door naar de index.php pagina
- */
-header('Refresh:3; url=MedewerkerOverzicht.php');
-
+    if ($stmt->execute()) {
+        header("Location: MedewerkerOverzicht.php?status=verwijderd");
+        exit;
+    } else {
+        echo "Fout bij verwijderen.";
+    }
+} else {
+    echo "Ongeldige aanvraag.";
+}
 ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Verwijder record</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <div class="alert alert-success text-center" role="alert">
-                    Het verwijderen is gelukt
-                </div>
-            </div>
-            <div class="col-3"></div>
-        </div>
-
-
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html>
