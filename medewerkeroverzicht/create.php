@@ -6,10 +6,15 @@
     include('config.php');
 
     $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
-    $pdo = new PDO($dsn, $dbUser, $dbPass);
+    try {
+        $pdo = new PDO($dsn, $dbUser, $dbPass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Database connection failed: " . $e->getMessage());
+    }
 
     // Check if the person already exists
-    $checkSql = "SELECT COUNT(*) FROM medewerkeroverzicht WHERE Voornaam = :voornaam AND Tussenvoegsel = :tussenvoegsel AND Achternaam = :achternaam";
+    $checkSql = "SELECT COUNT(*) FROM medewerkeroverzicht WHERE Voornaam = :voornaam AND (Tussenvoegsel = :tussenvoegsel OR (Tussenvoegsel IS NULL AND :tussenvoegsel IS NULL)) AND Achternaam = :achternaam";
     $checkStatement = $pdo->prepare($checkSql);
     $checkStatement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
     $checkStatement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
@@ -26,8 +31,8 @@
             Voornaam,
             Tussenvoegsel,
             Achternaam,
-            Telefoonnummer,
-            Werknemerrank,
+            Nummer,
+            Medewerkersoort,
             IsActief,
             Opmerking,
             DatumAangemaakt,
@@ -38,8 +43,8 @@
             :voornaam,
             :tussenvoegsel,
             :achternaam,
-            :telefoonnummer,
-            :werknemerrank,
+            :nummer,
+            :medewerkersoort,
             1,
             NULL,
             SYSDATE(6),
@@ -49,8 +54,8 @@
       $statement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
       $statement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
       $statement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
-      $statement->bindValue(':telefoonnummer', $_POST['telefoonnummer'], PDO::PARAM_STR);
-      $statement->bindValue(':werknemerrank', $_POST['werknemerrank'], PDO::PARAM_INT);
+      $statement->bindValue(':nummer', $_POST['nummer'], PDO::PARAM_STR);
+      $statement->bindValue(':medewerkersoort', $_POST['medewerkersoort'], PDO::PARAM_INT);
       $statement->execute();
 
       $display = 'flex';
@@ -111,12 +116,12 @@
           <input name="achternaam" type="text" class="form-control" id="achternaamMedewerker" placeholder="Achternaam van de medewerker">
         </div>
         <div class="mb-3">
-          <label for="telefoonnummer" class="form-label">Telefoonnummer</label>
-          <input name="telefoonnummer" type="number" class="form-control" id="telefoonnummerMedwerker" placeholder="Telefoonnummer van de medewerker" min="0" max="100000000000000">
+          <label for="nummermedewerker" class="form-label">Nummer</label>
+          <input name="nummer" type="number" class="form-control" id="nummerMedewerker" placeholder="Nummer van de Medewerker" min="0" max="100000000000000">
         </div>
         <div class="mb-3">
-          <label for="werknemerrank" class="form-label">Werknemerrank</label>
-          <input name="werknemerrank" type="number" class="form-control" id="werknemerrank" placeholder="Rank van de medewerker" min="0" max="255">
+          <label for="Medewerkersoort" class="form-label">Medewerkersoort</label>
+          <input name="medewerkersoort" type="text" class="form-control" id="medewerkerSoort" placeholder="Soort van de medewerker">
         </div>
         
         <div class="d-grid gap-2">
