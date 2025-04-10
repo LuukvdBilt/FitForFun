@@ -4,6 +4,21 @@ CREATE DATABASE FitForFun;
  
 USE Fitforfun;
  
+Create table Pincode
+(
+    Id INT NOT NULL AUTO_INCREMENT,
+    Pincode VARCHAR(10) NOT NULL,
+    IsActief BIT NOT NULL,
+    Opmerking VARCHAR(250),
+    Datumaangemaakt DATETIME(6) NOT NULL,
+    Datumgewijzigd DATETIME(6) NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+INSERT INTO Pincode (Pincode, IsActief, Opmerking, Datumaangemaakt, Datumgewijzigd)
+VALUES
+('1234', 1, 'Hoofdingang', SYSDATE(6), SYSDATE(6));
+
 CREATE TABLE Aanbiedingen (
     id INT AUTO_INCREMENT PRIMARY KEY,
     beschrijving TEXT NOT NULL,
