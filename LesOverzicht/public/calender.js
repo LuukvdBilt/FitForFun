@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create days of the month
     const daysInMonth = 30; // Example: 30 days in a month
-    const lesData = <?php echo json_encode($resultLes->fetch_all(MYSQLI_ASSOC)); ?>;
-    const reserveringData = <?php echo json_encode($resultReservering->fetch_all(MYSQLI_ASSOC)); ?>;
+    const lesData = window.lesData || [];
+    const reserveringData = window.reserveringData || [];
 
     for (let i = 1; i <= daysInMonth; i++) {
         const dayDiv = document.createElement('div');
