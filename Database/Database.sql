@@ -1,28 +1,29 @@
+--hiero
 DROP DATABASE IF EXISTS FitForFun;
-
+ 
 CREATE DATABASE FitForFun;
-
-USE Fitforfun; 
-
+ 
+USE Fitforfun;
+ 
 CREATE TABLE Aanbiedingen (
     id INT AUTO_INCREMENT PRIMARY KEY,
     beschrijving TEXT NOT NULL,
     prijs DECIMAL(10, 2) NOT NULL,
     kortingsprijs DECIMAL(10, 2) NOT NULL
 );
-
+ 
 INSERT INTO Aanbiedingen (beschrijving, prijs, kortingsprijs) VALUES
 ('🏋️‍♂️ FitForFun Deal: 3 Maanden Sportschoolabonnement 📌 Krijg 3 maanden onbeperkt toegang tot de sportschool 💰 Nu voor slechts', 80.00, 80.00 * 0.70),
 ('🏃‍♀️ FitForFun Deal: 2 Hardloopschoenen Voor de Prijs van 1! 📌 Koop één paar hardloopschoenen en krijg de tweede gratis!', 80.00, 40.00),
 ('🚴 FitForFun Deal: 30% Korting op Sportkleding en Accessoires! 📌 Van sportleggings tot fietshandschoenen-shop nu met korting!', 50.00, 50.00 * 0.70);
-
+ 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('Administrator','Medewerker','Lid', 'GastGebruiker') NOT NULL
 );
-
+ 
 INSERT INTO users (username, password, role) VALUES
 ('admin', 'Achraf1532!?', 'Administrator'),
 ('Wesley', 'BorgMan5289!', 'MedeWerker'),
@@ -53,106 +54,61 @@ INSERT INTO users (username, password, role) VALUES
 ('Lars', 'LarsPass123!', 'MedeWerker'),
 ('Sofia', 'SofiaPass123!', 'MedeWerker'),
 ('Ming', 'MingPass123!', 'MedeWerker');
-
-
-CREATE TABLE LidOverzicht
+ 
+CREATE TABLE MedewerkerOverzicht
 (
-    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT
-    ,Voornaam        VARCHAR(150)                           NOT NULL
+    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
+    Voornaam         VARCHAR(150)                           NOT NULL
     ,Tussenvoegsel   VARCHAR(50)                            NULL
     ,Achternaam      VARCHAR(150)                           NOT NULL
-    ,Lid_Sinds       DATE                                   NOT NULL
-    ,CONSTRAINT      PK_LidOverzicht_Id                     PRIMARY KEY CLUSTERED(Id)
+    ,Nummer          MEDIUMINT                              NOT NULL
+    ,Medewerkersoort VARCHAR(20)                            NOT NULL
+    ,IsActief        BIT                                    NOT NULL    DEFAULT 1
+    ,Opmerking       VARCHAR(255)                           NULL        DEFAULT NULL
+    ,DatumAangemaakt DATETIME(6)                            NOT NULL    
+    ,DatumGewijzigd  DATETIME(6)                            NOT NULL
+    ,CONSTRAINT      PK_MedewerkerOverzicht_Id              PRIMARY KEY CLUSTERED(Id)
 ) ENGINE=InnoDB;
-
-INSERT INTO LidOverzicht
-(
-         Voornaam
-        ,Tussenvoegsel
-        ,Achternaam
-        ,Lid_Sinds
-)
-VALUES
-('Jeroen', NULL, 'Kramer', '2025-01-30')
-,('Jesse', NULL, 'Kramer', '2025-02-01')
-,('Ahmed', NULL, 'Ali', '2025-02-05')
-,('Ismael', NULL, 'Hassan', '2025-02-10')
-,('Wessel', NULL, 'De Boer', '2025-02-15')
-,('Wessel', NULL, 'De Boer', '2025-01-30')
-,('Mark', NULL, 'Smith', '2025-02-01')
-,('Daniel', NULL, 'Johnson', '2025-02-05')
-,('Sophie', NULL, 'Williams', '2025-02-10')
-,('Lucas', NULL, 'Brown', '2025-02-15')
-,('Emma', NULL, 'Jones', '2025-02-20')
-,('Mila', NULL, 'Garcia', '2025-02-25')
-,('Noah', NULL, 'Martinez', '2025-03-01')
-,('Eva', NULL, 'Rodriguez', '2025-03-05')
-,('Liam', NULL, 'Hernandez', '2025-03-10')
-,('Julia', NULL, 'Lopez', '2025-03-15')
-,('Finn', NULL, 'Gonzalez', '2025-03-20')
-,('Tess', NULL, 'Wilson', '2025-03-25')
-,('Carlos', NULL, 'Anderson', '2025-03-30')
-,('Yuki', NULL, 'Thomas', '2025-01-30')
-,('Aisha', NULL, 'Taylor', '2025-02-01')
-,('Lars', NULL, 'Moore', '2025-02-05')
-,('Sofia', NULL, 'Jackson', '2025-02-10')
-,('Ming', NULL, 'Martin', '2025-02-15');
-
-
-
-   CREATE TABLE MedewerkerOverzicht (
-    Id              INT AUTO_INCREMENT                    NOT NULL,
-    Voornaam        VARCHAR(150)                          NOT NULL,
-    Tussenvoegsel   VARCHAR(50)                           NULL,
-    Achternaam      VARCHAR(150)                          NOT NULL,
-    Telefoonnummer  VARCHAR(180)                          NOT NULL,
-    Werknemerrank   VARCHAR(180)                          NOT NULL,
-    IsActief        BIT                                   NOT NULL DEFAULT 1,
-    Opmerking       VARCHAR(255)                          NULL DEFAULT NULL,
-    DatumAangemaakt DATETIME(6)                           NOT NULL,
-    DatumGewijzigd  DATETIME(6)                           NOT NULL,
-    CONSTRAINT PK_MedewerkerOverzicht_Id PRIMARY KEY CLUSTERED (Id)
-) ENGINE=InnoDB;
-
+ 
 INSERT INTO MedewerkerOverzicht
 (
          Voornaam
         ,Tussenvoegsel
         ,Achternaam
-        ,Telefoonnummer
-        ,Werknemerrank
+        ,Nummer
+        ,Medewerkersoort
         ,IsActief
         ,Opmerking
         ,DatumAangemaakt
         ,DatumGewijzigd
 )
 VALUES
-('Ahmed', NULL, 'Khasmiri', '0634127345', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Ismael', 'El', 'Karamari', '0670236044', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Wessel', 'Van der', 'Meer', '0699102045', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Mark', NULL, 'Zuckerberg', '0683213481', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Daniel', NULL, 'Zegveld', '0636936578', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Sophie', NULL, 'Jansen', '0612345678', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Lucas', 'De', 'Vries', '0623456789', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Emma', NULL, 'Bakker', '0634567890', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Mila', 'Van', 'Dijk', '0645678901', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Noah', NULL, 'Visser', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Eva', NULL, 'Smit', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Liam', 'Van', 'Leeuwen', '0678901234', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Julia', NULL, 'Dekker', '0689012345', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Finn', 'De', 'Jong', '0690123456', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Tess', NULL, 'Bos', '0601234567', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Carlos', NULL, 'Garcia', '0612345678', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Yuki', NULL, 'Tanaka', '0623456789', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Aisha', NULL, 'Khan', '0634567890', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Lars', NULL, 'Hansen', '0645678901', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Sofia', NULL, 'Rossi', '0656789012', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Ming', NULL, 'Li', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6))
-,('Mingo', NULL, 'lido', '0667890123', '2', 1, NULL, SYSDATE(6), SYSDATE(6));
-
+('Ahmed', NULL, 'Khasmiri', 1001, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Ismael', 'El', 'Karamari', 1002, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Wessel', 'Van der', 'Meer', 1003, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Mark', NULL, 'Zuckerberg', 1004, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Daniel', NULL, 'Zegveld', 1005, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sophie', NULL, 'Jansen', 1006, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lucas', 'De', 'Vries', 1007, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Emma', NULL, 'Bakker', 1008, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Mila', 'Van', 'Dijk', 1009, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Noah', NULL, 'Visser', 1010, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Eva', NULL, 'Smit', 1011, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Liam', 'Van', 'Leeuwen', 1012, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Julia', NULL, 'Dekker', 1013, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Finn', 'De', 'Jong', 1014, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Tess', NULL, 'Bos', 1015, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Carlos', NULL, 'Garcia', 1016, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Yuki', NULL, 'Tanaka', 1017, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Aisha', NULL, 'Khan', 1018, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Lars', NULL, 'Hansen', 1019, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Sofia', NULL, 'Rossi', 1020, 'beheerder', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Ming', NULL, 'Li', 1021, 'deskmedewerker', 1, NULL, SYSDATE(6), SYSDATE(6))
+,('Mingo', NULL, 'lido', 1022, 'manager', 1, NULL, SYSDATE(6), SYSDATE(6));
+ 
 CREATE TABLE LedenOverzicht
 (
-    Id               TINYINT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
+    Id               INT(3)          UNSIGNED           NOT NULL   AUTO_INCREMENT,
     Voornaam         VARCHAR(150)                           NOT NULL,
     Tussenvoegsel    VARCHAR(50)                            NULL,
     Achternaam       VARCHAR(150)                           NOT NULL,
@@ -165,7 +121,7 @@ CREATE TABLE LedenOverzicht
     DatumGewijzigd   DATETIME(6)                            NOT NULL,
     CONSTRAINT       PK_LedenOverzicht_Id                   PRIMARY KEY CLUSTERED(Id)
 ) ENGINE=InnoDB;
-
+ 
 INSERT INTO LedenOverzicht
 (
     Voornaam,
@@ -204,3 +160,55 @@ VALUES
 ('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', 1, NULL, SYSDATE(6), SYSDATE(6)),
 ('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', 1, NULL, SYSDATE(6), SYSDATE(6));
+ 
+CREATE TABLE Les (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Naam VARCHAR(50) NOT NULL,
+    Datum DATE NOT NULL,
+    Tijd TIME NOT NULL,
+    MinAantalPersonen TINYINT NOT NULL,
+    MaxAantalPersonen TINYINT NOT NULL,
+    Beschikbaarheid VARCHAR(50) NOT NULL,
+    Prijs DECIMAL(10, 2) NOT NULL, -- Toegevoegd Prijs kolom
+    Isactief BIT NOT NULL,
+    Opmerking VARCHAR(250),
+    Datumaangemaakt DATETIME(6) NOT NULL,
+    Datumgewijzigd DATETIME(6) NOT NULL,
+    PRIMARY KEY (Id)
+);
+ 
+-- Create the Reservering table
+CREATE TABLE Reservering (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Voornaam VARCHAR(50) NOT NULL,
+    Tussenvoegsel VARCHAR(10),
+    Achternaam VARCHAR(50) NOT NULL,
+    Nummer MEDIUMINT NOT NULL,
+    LesId INT NOT NULL, -- Toegevoegd LesId kolom
+    Datum DATE NOT NULL,
+    Tijd TIME NOT NULL,
+    Reserveringstatus VARCHAR(20) NOT NULL,
+    Isactief BIT NOT NULL,
+    Opmerking VARCHAR(250),
+    Datumaangemaakt DATETIME(6) NOT NULL,
+    Datumgewijzigd DATETIME(6) NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (LesId) REFERENCES Les(Id) -- Toegevoegd foreign key constraint
+);
+ 
+-- Voorbeeldgegevens invoegen
+INSERT INTO Les (Id, Naam, Datum, Tijd, Beschikbaarheid, MinAantalPersonen, MaxAantalPersonen, Prijs, Isactief, Opmerking, Datumaangemaakt, Datumgewijzigd)
+VALUES
+(1, 'Yoga', '2023-10-05', '09:00:00', 'Ingepland', 3, 9, 15.00, 1, 'Breng een matje mee.', '2023-09-01 10:00:00', '2023-09-01 10:00:00'),
+(2, 'Spinning', '2023-10-06', '10:30:00', 'Ingepland', 2, 8, 20.00, 1, 'Intensieve sessie.', '2023-09-02 11:00:00', '2023-09-02 11:00:00'),
+(3, 'Pilates', '2023-10-07', '14:00:00', 'Ingepland', 4, 10, 18.00, 1, 'Geschikt voor alle niveaus.', '2023-09-03 12:00:00', '2023-09-03 12:00:00'),
+(4, 'Zumba', '2023-10-08', '18:00:00', 'Ingepland', 5, 12, 22.00, 1, 'Dansen en fit blijven!', '2023-09-04 13:00:00', '2023-09-04 13:00:00'),
+(5, 'Kickboksen', '2023-10-09', '19:30:00', 'Ingepland', 3, 10, 25.00, 1, 'Voor zowel beginners als gevorderden.', '2023-09-05 14:00:00', '2023-09-05 14:00:00');
+ 
+INSERT INTO Reservering (Id, Voornaam, Tussenvoegsel, Achternaam, Nummer, LesId, Datum, Tijd, Reserveringstatus, Isactief, Opmerking, Datumaangemaakt, Datumgewijzigd)
+VALUES
+(1, 'Jan', 'van', 'Janssen', 123456789, 1, '2023-10-05', '09:00:00', 'Gereserveerd', 1, 'Eerste keer Yoga.', '2023-09-06 08:00:00', '2023-09-06 08:00:00'),
+(2, 'Piet', '', 'Hein', 987654321, 2, '2023-10-06', '10:30:00', 'Gereserveerd', 1, 'Regelmatige spinner.', '2023-09-07 09:00:00', '2023-09-07 09:00:00'),
+(3, 'Klaas', 'de', 'Boer', 456789123, 3, '2023-10-07', '14:00:00', 'Gereserveerd', 1, 'Pilates liefhebber.', '2023-09-08 10:00:00', '2023-09-08 10:00:00'),
+(4, 'Griet', 'van', 'Buren', 789123456, 4, '2023-10-08', '18:00:00', 'Gereserveerd', 1, 'Liefhebber van Zumba.', '2023-09-09 11:00:00', '2023-09-09 11:00:00'),
+(5, 'Anne', 'de', 'Jong', 321654987, 5, '2023-10-09', '19:30:00', 'Gereserveerd', 1, 'Kickboksen voor conditie.', '2023-09-10 12:00:00', '2023-09-10 12:00:00');

@@ -8,8 +8,8 @@
         $sql = "SELECT  MWOZ.Voornaam,
                                         MWOZ.Tussenvoegsel,
                                         MWOZ.Achternaam,
-                                        MWOZ.Telefoonnummer,
-                                        MWOZ.Werknemerrank
+                                        MWOZ.Nummer,
+                                        MWOZ.Medewerkersoort
                         FROM medewerkeroverzicht AS MWOZ
                         ORDER BY MWOZ.Voornaam DESC";
 
@@ -74,19 +74,25 @@
         <th>Voornaam</th>
         <th>Tussenvoegsel</th>
         <th>Achternaam</th>
-        <th>Telefoonnummer</th>
-        <th>Werknemerrank</th>
+        <th>Nummer</th>
+        <th>Medewerkersoort</th>
+        <th>Edit</th>
       </tr>
       <?php foreach ($result as $row): ?>
         <tr>
           <td><?php echo htmlspecialchars($row->Voornaam); ?></td>
           <td><?php echo htmlspecialchars($row->Tussenvoegsel ?? ''); ?></td>
           <td><?php echo htmlspecialchars($row->Achternaam); ?></td>
-          <td><?php echo htmlspecialchars($row->Telefoonnummer); ?></td>
-          <td><?php echo htmlspecialchars($row->Werknemerrank); ?></td>
+          <td><?php echo htmlspecialchars($row->Nummer); ?></td>
+          <td><?php echo htmlspecialchars($row->Medewerkersoort); ?></td>
+          <td>
+            <a href="edit.php?Nummer=<?php echo urlencode($row->Nummer); ?>" class="btn btn-primary btn-sm">Edit</a>
+          </td>
+
         </tr>
       <?php endforeach; ?>
     </table>
+    
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
