@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $mysqli = new mysqli("localhost", "root", "", "Fitforfun");
 
 if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+    die("Connection failed: {$mysqli->connect_error}");
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -78,60 +78,80 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <li class="nav-item">
             <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
-        </ul>
-
-        <ul class="navbar-nav">
-        <li class="nav-item">
-        <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+          
+            </ul>
+    
+            <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+              echo '<ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../Accountgegevens/index.php">Accountinstellingen</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
+                  </li>
+                  </ul>';
+            } else {
+              echo '<ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../AccountsOverzicht/login.php">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../PerPeriode/create.php">Register</a>
+                  </li>
+                  </ul>';
+            }
+            ?>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
 <?php if (isset($_SESSION['username'])) : ?>
 
-    <div class="welkomsbericht">
-        <h1>Welkom, <?php echo $_SESSION['username']; ?></h1>
-       
-    </div>
+    <?php
+    function loggedIn() {
+        return isset($_SESSION['username']);
+    }
+    ?>
 
-<?php else : ?>
+    <?php if (loggedIn()) : ?>
+        <div class="welkomsbericht">
+            <h1>Welkom, <?php echo $_SESSION['username']; ?></h1>
+        </div>
+    <?php endif; ?>
+
+    <?php else : ?>
 
       <div class="containerlogin">
-      <form action="login.php" method="POST">
+        <form action="login.php" method="POST">
           <img class="logo" 
           src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" 
           alt="FitForFun Logo">
           <br>
-                <label for="username">Gebruikersnaam:</label>
-                <input type="text" id="username" name="username" required><br>
-                <label for="password">Wachtwoord:</label>
-                <input type="password" id="password" name="password" required><br>
-                <br>
-                <input type="submit" value="Inloggen">
-            </form>
+          <label for="username">Gebruikersnaam:</label>
+          <input type="text" id="username" name="username" required><br>
+          <label for="password">Wachtwoord:</label>
+          <input type="password" id="password" name="password" required><br>
+          <br>
+          <input type="submit" value="Inloggen">
+        </form>
 
-            <?php
+        <?php
+        if (isset($_SESSION['error_message'])) {
+          echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
+          unset($_SESSION['error_message']);
+        }
 
-            if (isset($_SESSION['error_message'])) {
-                echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
-                unset($_SESSION['error_message']);
-            }
+        if (isset($_SESSION['error_message2'])) {
+          echo "<div class='error-message'>" . $_SESSION['error_message2'] . "</div>";
+          unset($_SESSION['error_message2']);
+        }
+        ?>
+      </div>
 
-            if (isset($_SESSION['error_message2'])) {
-                echo "<div class='error-message'>" . $_SESSION['error_message2'] . "</div>";
-                unset($_SESSION['error_message2']);
-            }
-            ?>
-
-       
-            
-        <?php endif; ?>
-    </div>
+    <?php endif; ?>
 
     <script src="script.js"></script>
 </body>

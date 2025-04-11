@@ -50,7 +50,7 @@
                 die("Connection failed: " . $mysqli->connect_error);
             }
 
-            $result = $mysqli->query("SELECT Voornaam,Tussenvoegsel,Achternaam, Lid_Sinds  FROM LidOverzicht ORDER BY Lid_Sinds DESC");
+            $result = $mysqli->query("SELECT Voornaam,Tussenvoegsel,Achternaam, Lid_Sinds  FROM LedenOverzicht ORDER BY Lid_Sinds DESC");
             if ($result->num_rows > 0) {
                 echo str_repeat("<br>", 2);
                 echo "<h2 class='mb-3 text-center'>Overzicht van alle Accounts Per Periode</h2><ul class='list-group'>";

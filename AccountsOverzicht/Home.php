@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (!isset($_SESSION['page_loaded'])) {
     $_SESSION['page_loaded'] = true;
