@@ -32,7 +32,8 @@ $resultReservering = $conn->query($sqlReservering);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="calendersheet.css">
+   
+    
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top">
@@ -75,9 +76,22 @@ $resultReservering = $conn->query($sqlReservering);
 
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
+    
             <h1 class="mb-0">Les Overzicht</h1>
             <a href="add_lesson.php" class="btn btn-warning">Voeg een Les Toe</a>
+            <form method="GET" class="mb-3 d-flex align-items-center">
+
+    <P><label for="sort" class="me-2 mb-0">Sorteer op:</label></p>
+    
         </div>
+        <select name="sort" id="sort" class="form-select w-auto" onchange="this.form.submit()">
+        <option value="id_asc" <?= ($_GET['sort'] ?? '') == 'id_asc' ? 'selected' : '' ?>>ID (standaard)</option>
+        <option value="datum_asc" <?= ($_GET['sort'] ?? '') == 'datum_asc' ? 'selected' : '' ?>>Datum ↑</option>
+        <option value="datum_desc" <?= ($_GET['sort'] ?? '') == 'datum_desc' ? 'selected' : '' ?>>Datum ↓</option>
+        <option value="prijs_asc" <?= ($_GET['sort'] ?? '') == 'prijs_asc' ? 'selected' : '' ?>>Prijs ↑</option>
+        <option value="prijs_desc" <?= ($_GET['sort'] ?? '') == 'prijs_desc' ? 'selected' : '' ?>>Prijs ↓</option>
+    </select>
+</form>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -92,6 +106,27 @@ $resultReservering = $conn->query($sqlReservering);
             </thead>
             <tbody>
                 <?php
+                $sort = $_GET['sort'] ?? 'id_asc';
+
+                switch ($sort) {
+                    case 'datum_asc':
+                        $orderBy = 'Datum ASC';
+                        break;
+                    case 'datum_desc':
+                        $orderBy = 'Datum DESC';
+                        break;
+                    case 'prijs_asc':
+                        $orderBy = 'Prijs ASC';
+                        break;
+                    case 'prijs_desc':
+                        $orderBy = 'Prijs DESC';
+                        break;
+                    default:
+                        $orderBy = 'Id ASC';
+                        break;
+                }
+                $sql = "SELECT * FROM Les ORDER BY $orderBy";
+                $resultLes = $conn->query($sql);
                 if ($resultLes && $resultLes->num_rows > 0) {
                     while($row = $resultLes->fetch_assoc()) {
                         $opmerking = $row["Opmerking"] ?? 'Geen opmerking';
@@ -160,6 +195,8 @@ $resultReservering = $conn->query($sqlReservering);
 </html>
 
 <?php
+
+
 // Close the database connection
 if (isset($conn)) {
     $conn->close();

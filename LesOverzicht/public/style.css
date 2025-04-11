@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* General Styles */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -124,3 +125,131 @@ body {
 .btn-warning:hover {
     background-color: #e69500;
 }
+=======
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0614d4; /* Dark blue background for the website */
+    padding-top: 80px; /* Space for the fixed navbar */
+    color: #e0e7ff; /* Light text color */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #0614d4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: #0047AB; /* Set background color */
+    border-bottom: 1px solid black; /* Add a bottom border */
+}
+
+.navbar .logo {
+    width: 38px; /* Set width */
+    height: 38px; /* Set height */
+    margin-right: 15px; /* Add right margin */
+}
+
+.nav-item {
+    color: white; /* Set text color to white */
+    margin: 5px; /* Add margin */
+}
+
+.nav-link {
+    color: white !important; /* Set text color to white and make it important */
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #333; /* Dark text color for better contrast */
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Adjust spacing as needed */
+    background-color: #ffffff; /* White background for data */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border: 1px solid #e0e0e0; /* Light border color */
+}
+
+.table th {
+    background-color: #f9f9f9; /* Light background for headers */
+    font-weight: bold;
+}
+
+/* Calendar Styling */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background-color: #ffffff; /* White background for data */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day {
+    border: 1px solid #e0e0e0; /* Light border color */
+    padding: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #333; /* Dark text color */
+    border-radius: 4px;
+}
+
+.event {
+    background-color: #007BFF;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+/* Reservation Styling */
+.reservation {
+    background-color: #ffffff; /* White background for data */
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333; /* Dark text color */
+}
+
+.reservation h3 {
+    margin-top: 0;
+}
+
+/* Button Styling */
+.btn-warning {
+    background-color: #FFA500;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px; /* Adjusted padding */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Remove underline */
+}
+
+.btn-warning:hover {
+    background-color: #e69500;
+}
+>>>>>>> 13a619e0830d919375331b36a17d7db2dbc968d9
