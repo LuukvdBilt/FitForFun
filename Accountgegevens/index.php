@@ -8,6 +8,8 @@ try {
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
   die("Database connection failed: " . $e->getMessage());
+
+  
 }
 
 ?>
@@ -55,7 +57,7 @@ try {
       </ul>
 
       <?php
-      if (isset($_SESSION['loggedin'])) {
+      if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         echo '<ul class="navbar-nav">
         <li class="nav-item">
         <a class="nav-link" href="../Accountgegevens/index.php">Accountinstellingen</a>
@@ -81,6 +83,18 @@ try {
     <div class="container col-8 mt-5">
         <h2 class="mb-3">Accountinstellingen</h2>
         <?php
+        // hier echo ik mijn user id
+        if (isset($_SESSION['user_id'])) {
+          $user_id = $_SESSION['user_id'];
+      } else {
+          // Bijvoorbeeld: terugsturen naar loginpagina
+          header("Location: ../Accountgegevens/login.php");
+          exit();
+      }
+      
+        ?>
+        <!-- Hier komt de code voor het ophalen van de gegevens van de ingelogde gebruiker -->
+        <?php
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id'];
             $query = "SELECT * FROM LedenOverzicht WHERE id = :user_id";
@@ -88,7 +102,7 @@ try {
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
             $stmt->execute();
         } else {
-            echo "Je moet ingelogd zijn om je accountgegevens te bekijken.";
+            echo "Op dit moment kunnen wij geen gegevens ophalen. Probeer het later opnieuw.";
             exit;
         }
 

@@ -18,32 +18,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
+    var_dump($user);
 
-    if ($user && ($user['role'] == 'Medewerker' || $user['role'] == 'Administrator') && $user['password'] == $password) {
+    if ($user && ($user['role'] == 'Medewerker' || $user['role'] == 'Administrator') ||($user['role'] == 'Lid' && $user['password'] == $password)) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['loggedin'] = true;
         $stmt->close();
         $mysqli->close();
-        header("Location: ../Dashboard/Dashboard.php");
+        header("Location: index.php");
         exit;
-    } else if (( $user['role'] == "Lid") && $user['password'] == $password) {
-        $_SESSION['error_message'] = "<span style='color: red;'>U heeft geen toegang tot deze pagina.</span>";
-        $stmt->close();
-        $mysqli->close();
-        header("Location: login.php");
-        exit;
-    } else if ($user && ($_SESSION['loggedin'] === true && $user['role'] == 'Medewerker' || $user['role'] == 'Administrator') && $user['password'] == $password) {
-      header("Location: ../Dashboard/Dashboard.php");
-      exit;
-    } else {
-      $_SESSION['error_message2'] = "<span style='color: red;'>Onjuiste gebruikersnaam of wachtwoord.</span>";
-      $stmt->close();
-      $mysqli->close();
-      header("Location: login.php");
-      exit;
-    }
-}
+    } 
+  }
 ?>
 
 <!DOCTYPE html>
@@ -119,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" 
           alt="FitForFun Logo">
           <br>
+          <h4>beveiligingscontrole</h4>
           <label for="username">Gebruikersnaam:</label>
           <input type="text" id="username" name="username" required><br>
           <label for="password">Wachtwoord:</label>

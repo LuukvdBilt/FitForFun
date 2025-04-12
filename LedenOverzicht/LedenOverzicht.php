@@ -58,18 +58,35 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
             <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
         </ul>
+ <!-- kijkt of je ingelogd bent of niet, dit geeft ook dan andere displays als 1 van de twee geactiveerd zijn -->
+        <?php
+            session_start(); 
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+              echo '<ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../Accountgegevens/index.php">Accountinstellingen</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
+                  </li>
+                  </ul>';
+            } else {
+              echo '<ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../AccountsOverzicht/login.php">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../PerPeriode/create.php">Register</a>
+                  </li>
+                  </ul>';
+            }
+            ?>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
   
   <div class="background">
     <button class="createbutton" onclick="window.location.href='create.php'">Nieuw lid toevoegen</button>

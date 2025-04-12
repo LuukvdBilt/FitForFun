@@ -54,17 +54,34 @@
       </li>
         </ul>
 
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../PerPeriode/create.php">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <?php
+            session_start(); 
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+              echo '<ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../Accountgegevens/index.php">Accountinstellingen</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
+                  </li>
+                  </ul>';
+            } else {
+              echo '<ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../AccountsOverzicht/login.php">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../PerPeriode/create.php">Register</a>
+                  </li>
+                  </ul>';
+            }
+            ?>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
 
   <div class="container-table">
     <button onclick="window.location.href='create.php'">Nieuwe medewerker toevoegen</button>
