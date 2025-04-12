@@ -38,12 +38,12 @@ $resultReservering = $conn->query($sqlReservering);
     
 </head>
 <body>
+<!-- Removed duplicate navigation bar -->
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
       <img class="logo"
-        src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png"
-        alt="FitForFun Logo">
-      </a>
+              src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png"
+              alt="FitForFun Logo">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -51,53 +51,16 @@ $resultReservering = $conn->query($sqlReservering);
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../../Homepagina/index.php">Home</a>
+            <a class="nav-link" href="/FitForFun/Homepagina/index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
+            <a class="nav-link" href="/FitForFun/AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../LesOverzicht/public/lessen.php">Geplande lessen</a>
+            <a class="nav-link" href="/FitForFun/LesOverzicht/public/lessen.php">Geplande lessen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../AccountsOverzicht/login.php">Management Dashboard</a>
-          </li>
-        </ul>
-
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="PerPeriode/AccountPerPeriode.php">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-<nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid">
-      <img class="logo"
-        src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png"
-        alt="FitForFun Logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../Homepagina/index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../LesOverzicht/public/lessen.php">Geplande lessen</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
+            <a class="nav-link" href="/FitForFun/AccountsOverzicht/login.php">Management Dashboard</a>
           </li>
           
             </ul>
@@ -106,19 +69,19 @@ $resultReservering = $conn->query($sqlReservering);
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
               echo '<ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="../Accountgegevens/index.php">Accountinstellingen</a>
+                    <a class="nav-link" href="/FitForFun/Accountgegevens/index.php">Accountinstellingen</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
+                    <a class="nav-link" href="/FitForFun/AccountsOverzicht/logout.php">Uitloggen</a>
                   </li>
                   </ul>';
             } else {
               echo '<ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="../AccountsOverzicht/login.php">Login</a>
+                    <a class="nav-link" href="/FitForFun/AccountsOverzicht/login.php">Login</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="../PerPeriode/create.php">Register</a>
+                    <a class="nav-link" href="/FitForFun/PerPeriode/create.php">Register</a>
                   </li>
                   </ul>';
             }
@@ -130,25 +93,25 @@ $resultReservering = $conn->query($sqlReservering);
       </nav>
 
 
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <h1 class="mb-0">Les Overzicht</h1>
 
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-    
-            <h1 class="mb-0">Les Overzicht</h1>
-            <a href="add_lesson.php" class="btn btn-warning">Voeg een Les Toe</a>
-            <form method="GET" class="mb-3 d-flex align-items-center">
+        <a href="add_lesson.php" class="btn btn-warning ms-2 me-2">Voeg een Les Toe</a>
 
-    <P><label for="sort" class="me-2 mb-0">Sorteer op:</label></p>
-    
-        </div>
-        <select name="sort" id="sort" class="form-select w-auto" onchange="this.form.submit()">
-        <option value="id_asc" <?= ($_GET['sort'] ?? '') == 'id_asc' ? 'selected' : '' ?>>ID (standaard)</option>
-        <option value="datum_asc" <?= ($_GET['sort'] ?? '') == 'datum_asc' ? 'selected' : '' ?>>Datum ↑</option>
-        <option value="datum_desc" <?= ($_GET['sort'] ?? '') == 'datum_desc' ? 'selected' : '' ?>>Datum ↓</option>
-        <option value="prijs_asc" <?= ($_GET['sort'] ?? '') == 'prijs_asc' ? 'selected' : '' ?>>Prijs ↑</option>
-        <option value="prijs_desc" <?= ($_GET['sort'] ?? '') == 'prijs_desc' ? 'selected' : '' ?>>Prijs ↓</option>
-    </select>
-</form>
+        <form method="GET" class="d-flex align-items-center">
+            <label for="sort" class="me-2 mb-0">Sorteer op:</label>
+            <select name="sort" id="sort" class="form-select w-auto" onchange="this.form.submit()">
+                <option value="id_asc" <?= ($_GET['sort'] ?? '') == 'id_asc' ? 'selected' : '' ?>>ID (standaard)</option>
+                <option value="datum_asc" <?= ($_GET['sort'] ?? '') == 'datum_asc' ? 'selected' : '' ?>>Datum ↑</option>
+                <option value="datum_desc" <?= ($_GET['sort'] ?? '') == 'datum_desc' ? 'selected' : '' ?>>Datum ↓</option>
+                <option value="prijs_asc" <?= ($_GET['sort'] ?? '') == 'prijs_asc' ? 'selected' : '' ?>>Prijs ↑</option>
+                <option value="prijs_desc" <?= ($_GET['sort'] ?? '') == 'prijs_desc' ? 'selected' : '' ?>>Prijs ↓</option>
+            </select>
+        </form>
+    </div>
+</div>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
