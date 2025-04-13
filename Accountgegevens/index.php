@@ -1,5 +1,4 @@
 <?php
-
 // connectie met de database en login pagina
 require_once 'config.php';
 require_once 'login.php';
@@ -10,8 +9,6 @@ try {
 } catch (PDOException $e) {
   die("Database connection failed: " . $e->getMessage());
 }
-var_dump($_SESSION)
-
 ?>
 
 <!doctype html>
@@ -55,7 +52,6 @@ var_dump($_SESSION)
           <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
         </li>
       </ul>
- <!-- kijkt of je ingelogd bent of niet, dit geeft ook dan andere displays als 1 van de twee geactiveerd zijn -->
       <?php
       if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         echo '<ul class="navbar-nav">
@@ -83,46 +79,36 @@ var_dump($_SESSION)
     <div class="container col-8 mt-5">
         <h2 class="mb-3">Accountinstellingen</h2>
     
-        <!-- Hier komt de code voor het ophalen van de gegevens van de ingelogde gebruiker -->
-    
     <div class="container mt-4">
         <div id="accounts-list">
             <?php
-            if (isset($_SESSION['user_id'])) {
-              $userId = $_SESSION['user_id'];
-              $stmt = $mysqli->prepare("SELECT voornaam, tussenvoegsel, achternaam, email, relatienummer FROM LedenOverzicht WHERE id = ?");
-              $stmt->execute();
-              $result = $stmt->get_result();
-
-              if ($result->num_rows > 0) {
-                echo str_repeat("<br>", 2);
-                while ($row = $result->fetch_assoc()) {
-                  echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
-
-                  echo "<span>Volledige naam: " . htmlspecialchars($row['voornaam']) 
-                  . " " . 
-                     (!empty($row['tussenvoegsel']) ? htmlspecialchars($row['tussenvoegsel']) 
+            if (isset($_SESSION['username'])) {
+                $stmt = $pdo->prepare("SELECT * FROM LedenOverzicht WHERE username = :username");
+                $stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_STR);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $row) {
+                    echo "<ul class='list-group mb-3'>";
+                    echo "<li class='list-group-item'><strong>Gebruikersnaam:</strong> " . htmlspecialchars($row['username']) . "</li>";
+                    echo "<li class='list-group-item'><strong>Volledige naam:</strong> " . htmlspecialchars($row['Voornaam']) 
+                    . " " . 
+                     (!empty($row['Tussenvoegsel']) ? htmlspecialchars($row['Tussenvoegsel']) 
                      . " " : "") . 
-                     htmlspecialchars($row['achternaam']) . "</span>";
-
-                  echo "<span>Email: " . htmlspecialchars($row['email']) . "</span>";
-
-                  echo "<span>Relatienummer: " . htmlspecialchars($row['relatienummer']) . "</span>";
-                  echo "</li>";
+                     htmlspecialchars($row['Achternaam']) . "</li>";
+                    echo "<li class='list-group-item'><strong>Mobiel:</strong> " . htmlspecialchars($row['Mobiel']) . "</li>";
+                    echo "<li class='list-group-item'><strong>Email:</strong> " . htmlspecialchars($row['Email']) . "</li>";
+                    echo "<li class='list-group-item'><strong>Lid sinds:</strong> " . htmlspecialchars($row['Lid_Sinds']) . "</li>";
+                    echo "<li class='list-group-item'><strong>Rol:</strong> " . htmlspecialchars($row['rol']) . "</li>";
+                    echo "<li class='list-group-item text-center'>";
+                    echo "<a href='edit.php?Nummer=" . htmlspecialchars($row['Nummer']) . "' class='btn btn-primary me-2'>Wijzigen</a>";
+                    echo "<a href='delete.php?Nummer=" . htmlspecialchars($row['Nummer']) . "' class='btn btn-danger'>Verwijderen</a>";
+                    echo "</li>";
+                    echo "</ul>";
                 }
-              } else {
-                echo "Geen gegevens gevonden.";
-              }
-            } 
-            if (isset($stmt)) {
-              $stmt->close();
             }
-            $mysqli->close();
             ?>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
