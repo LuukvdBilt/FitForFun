@@ -1,9 +1,35 @@
+
+
 body {
-    font-family: Arial, sans-serif; /* Body font */
-    background-color: #0047AB !important; /* Background color */
-    background-size: cover; /* Background size */
-    background-position: center; /* Background position */
-    padding: 0%; /* Padding */
+    font-family: Arial, sans-serif;
+    background-color: #0047AB;
+    background-size: cover;
+    background-position: center;
+    padding-top: 80px; 
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+.navbar {
+    background-color: #0047AB;
+    border-bottom: 1px solid black;
+}
+.navbar .logo {
+    width: 38px;
+    height: 38px;
+    margin-right: 15px;
+}
+
+.nav-item {
+    color: white;
+    margin: 5px;
+}
+
+.nav-link {
+    color: white !important;
 }
 
 .blacklayer {
@@ -38,32 +64,11 @@ body {
     color: black; /* Set text color to black */
 }
 
-.navbar {
-    background-color: #0047AB; /* Set background color */
-    border-bottom: 1px solid black; /* Add a bottom border */
-}
-
-.navbar .logo {
-    width: 38px; /* Set width */
-    height: 38px; /* Set height */
-    margin-right: 15px; /* Add right margin */
-}
-
-.nav-item {
-    color: white; /* Set text color to white */
-    margin: 5px; /* Add margin */
-}
-
-.nav-link {
-    color: white !important; /* Set text color to white and make it important */
-}
-
 /* container first */
 
 .firstsection {
     width: 100%; /* Set width to 100% */
     height: 100vh; /* Set height to 100% of the viewport height */
-    background-image: url('https://youfit.com/wp-content/uploads/2024/06/YouFit-06-20-22-2527-Edit.jpg'); /* Set background image */
     background-size: cover; /* Cover the entire background */
     background-position: center; /* Center the background image */
     position: relative; /* Set position to relative */
