@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
-    if ($user && ($user['rol'] == 'Medewerker' || $user['rol'] == 'Administrator') ||($user['rol'] == 'Lid' && $user['password'] == $password)) {
+    if ($user && (($user['rol'] == 'Medewerker' || $user['rol'] == 'Administrator') || ($user['rol'] == 'Lid' && $user['password'] == $password))) {
         $stmt = $mysqli->prepare("SELECT * FROM LedenOverzicht WHERE Username = ?");
         $_SESSION['username'] = $user['username'];
         $_SESSION['Voornaam'] = $user['Voornaam'];
@@ -34,8 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
         $mysqli->close();
         header("Location: index.php");
+        
         exit;
     } 
+    else {
+        $_SESSION['error_message'] = "<span style='color: red;'>Ongeldige gebruikersnaam of wachtwoord.</span>";
+        header("Refresh: 2; url=login.php");
+        $stmt->close();
+        $mysqli->close();
+    }
   }
 ?>
 
@@ -128,10 +135,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
           unset($_SESSION['error_message']);
         }
 
-        if (isset($_SESSION['error_message2'])) {
-          echo "<div class='error-message'>" . $_SESSION['error_message2'] . "</div>";
-          unset($_SESSION['error_message2']);
-        }
         ?>
       </div>
     

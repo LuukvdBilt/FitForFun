@@ -1,134 +1,165 @@
 <?php
-  $display = 'none';
-  $errorMessage = '';
+$display = 'none';
+$errorMessage = '';
 
-  if (isset($_POST['submit'])) {
-    include('config.php');
+if (isset($_POST['submit'])) {
+  include('config.php');
 
+  try {
     $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
     $pdo = new PDO($dsn, $dbUser, $dbPass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Check if the person or email already exists
-    $checkSql = "SELECT COUNT(*) FROM AccountAanmaken WHERE (Voornaam = :voornaam AND Tussenvoegsel = :tussenvoegsel AND Achternaam = :achternaam) OR Email = :email";
+    // kik of de lid al bestaat
+    $checkSql = "SELECT COUNT(*) FROM LedenOverzicht 
+         WHERE Voornaam = :voornaam 
+         AND Tussenvoegsel = :tussenvoegsel 
+         AND Achternaam = :achternaam 
+         AND Email = :email 
+         AND username = :username 
+         AND Nummer = :nummer 
+         AND Mobiel = :mobiel 
+         AND password = :password";
     $checkStatement = $pdo->prepare($checkSql);
+
     $checkStatement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
     $checkStatement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
     $checkStatement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':email', $_POST['Email'], PDO::PARAM_STR);
+    $checkStatement->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+    $checkStatement->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
+    $checkStatement->bindValue(':nummer', $_POST['Nummer'], PDO::PARAM_INT);
+    $checkStatement->bindValue(':mobiel', $_POST['mobiel'], PDO::PARAM_STR);
+    $checkStatement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
     $checkStatement->execute();
     $count = $checkStatement->fetchColumn();
 
     if ($count > 0) {
       $errorMessage = 'Dit persoon bestaat al';
       $display = 'flex';
-    } else {
-      $sql = "INSERT INTO AccountAanmaken
+    } 
+    // voert de query uit om de gegevens op te slaan
+    else {
+      $sql = "INSERT INTO LedenOverzicht
           (
-              Voornaam,
+            username,
+            Voornaam,
             Tussenvoegsel,
             Achternaam,
+            Nummer,
+            Mobiel,
             Email,
-            Wachtwoord,
-            IsActief,
-            Opmerking,
-            DatumAangemaakt,
-            DatumGewijzigd
+            password
           )
           VALUES
           (
+            :username,
             :voornaam,
             :tussenvoegsel,
             :achternaam,
+            :nummer,
+            :mobiel,
             :email,
-            :wachtwoord,
-            1,
-            NULL,
-            SYSDATE(6),
-            SYSDATE(6)
+            :password
           )";
       $statement = $pdo->prepare($sql);
+      $statement->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
       $statement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
       $statement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
       $statement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
-      $statement->bindValue(':email', $_POST['Email'], PDO::PARAM_STR);
-      $statement->bindValue(':wachtwoord', $_POST['Wachtwoord'], PDO::PARAM_STR);
+      $statement->bindValue(':nummer', $_POST['Nummer'], PDO::PARAM_INT);
+      $statement->bindValue(':mobiel', $_POST['mobiel'], PDO::PARAM_STR);
+      $statement->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+      $statement->bindValue(':password', password_hash($_POST['password'], PASSWORD_BCRYPT), PDO::PARAM_STR);
 
-   
       $statement->execute();
 
       $display = 'flex';
       header('Refresh:3; url=../Homepagina/index.php');
     }
+  } catch (PDOException $e) {
+    $errorMessage = 'Er is een fout opgetreden: ' . $e->getMessage();
+    $display = 'flex';
   }
+}
 ?>
 
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Account Aanmaken</title>
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  </head>
-  <body>
-  <div class="container mt-3">
-
-    <div class="row" style="display:<?= $display ?? 'none'; ?>">
-    <div class="col-3"></div>
-    <div class="col-6">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <!-- Alert Section -->
+  <div class="row justify-content-center" style="display:<?= $display ?? 'none'; ?>">
+    <div class="col-md-6">
       <?php if ($errorMessage): ?>
-      <div class="alert alert-danger text-center" role="alert">
-        <?= $errorMessage ?>
-      </div>
+        <div class="alert alert-danger text-center" role="alert">
+          <?= $errorMessage ?>
+        </div>
       <?php else: ?>
-      <div class="alert alert-success text-center" role="alert">
-        De nieuwe lid is opgeslagen, u wordt doorgestuurd naar de Homepagina.
-      </div>
+        <div class="alert alert-success text-center" role="alert">
+          De nieuwe lid is opgeslagen, u wordt doorgestuurd naar de Homepagina.
+        </div>
       <?php endif; ?>
     </div>
-    <div class="col-3"></div>
-    </div>
+  </div>
 
-    <div class="row mb-1">
-    <div class="col-3"></div>
-    <div class="col-6 text-primary"><h3>Wordt nu lid van onze website!</h3></div>
-    <div class="col-3"></div>
-    </div>
 
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6">              
-        <form action="create.php" method="POST">
+  <div class="row text-center mb-4">
+    <div class="col">
+      <h2 class="text-primary">Wordt nu lid van onze website!</h2>
+      <p class="text-muted">Vul het onderstaande formulier in om een account aan te maken.</p>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form action="create.php" method="POST" class="p-4 border rounded shadow-sm bg-light">
+        <div class="mb-3">
+          <label for="username" class="form-label">Gebruikersnaam</label>
+          <input name="username" type="text" class="form-control" id="username" placeholder="Gebruikersnaam" required>
+        </div>
         <div class="mb-3">
           <label for="voornaam" class="form-label">Voornaam</label>
-          <input name="voornaam" type="text" class="form-control" id="voornaamGastgebruiker" placeholder="Naam van de gastgebruiker">
+          <input name="voornaam" type="text" class="form-control" id="voornaam" placeholder="Voornaam" required>
         </div>
         <div class="mb-3">
           <label for="tussenvoegsel" class="form-label">Tussenvoegsel</label>
-          <input name="tussenvoegsel" type="text" class="form-control" id="tussenvoegselGastgebruiker" placeholder="Tussenvoegsel van de van de gastgebruiker">
+          <input name="tussenvoegsel" type="text" class="form-control" id="tussenvoegsel" placeholder="Tussenvoegsel">
         </div>
         <div class="mb-3">
           <label for="achternaam" class="form-label">Achternaam</label>
-          <input name="achternaam" type="text" class="form-control" id="achternaamGastgebruiker" placeholder="Achternaam van de gastgebruiker">
+          <input name="achternaam" type="text" class="form-control" id="achternaam" placeholder="Achternaam" required>
+        </div>
+        <div class="mb-3">
+          <label for="Nummer" class="form-label">Nummer</label>
+          <input name="Nummer" type="number" class="form-control" id="Nummer" placeholder="Nummer" required>
+        </div>
+        <div class="mb-3">
+          <label for="mobiel" class="form-label">Mobiel</label>
+          <input name="mobiel" type="number" class="form-control" id="mobiel" placeholder="Mobiel" required>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input name="Email" type="email" class="form-control" id="emailGastgebruiker" placeholder="email van de gastgebruiker" min="0" max="100">
+          <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
         </div>
         <div class="mb-3">
-          <label for="wachtwoord" class="form-label">Wachtwoord</label>
-          <input name="Wachtwoord" type="password" class="form-control" id="wachtwoordGastgebruiker" placeholder="Wachtwoord van de gastgebruiker">
-
+          <label for="password" class="form-label">Wachtwoord</label>
+          <input name="password" type="password" class="form-control" id="password" placeholder="Wachtwoord" required>
+        </div>
         <div class="d-grid gap-4">
           <button name="submit" value="submit" type="submit" class="btn btn-primary btn-lg">Submit</button>
-        </div>
-        </form>
-      </div>
-      <div class="col-3"></div>
+        </di>
+      </form>
     </div>
+    <div class="col-3"></div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

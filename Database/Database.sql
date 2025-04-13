@@ -159,6 +159,7 @@ INSERT INTO LedenOverzicht
     DatumGewijzigd
 )
 VALUES
+(1000, 'jan.janssen', 'Jan', 'van', 'Janssen', '0612345678', 'jan.janssen@example.com', '2025-09-01', 'Lid', 'JanPass123!?', 1, NULL, SYSDATE(6), SYSDATE(6)),
 (1001, 'Hamidoes', 'Hamida', 'El', 'Harachi', '0612345678', 'hamida.Harachi@example.com', '2025-01-01', 'Lid', 'Hamida123!?', 1, NULL, SYSDATE(6), SYSDATE(6)),
 (1002, 'jesse.jansen', 'Jesse', NULL, 'Jansen', '0623456789', 'jesse.jansen@example.com', '2025-01-04', 'Lid', 'JessePass456!', 1, NULL, SYSDATE(6), SYSDATE(6)),
 (1003, 'ahmed.ali', 'Ahmed', NULL, 'Ali', '0634567890', 'ahmed.ali@example.com', '2025-01-07', 'Lid', 'AhmedPass789!', 1, NULL, SYSDATE(6), SYSDATE(6)),
