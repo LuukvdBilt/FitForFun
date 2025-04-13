@@ -1,16 +1,16 @@
 <?php
-session_start();
-// connectie met de database
+
+// connectie met de database en login pagina
 require_once 'config.php';
+require_once 'login.php';
 
 try {
   $pdo = new PDO('mysql:host=localhost;dbname=Fitforfun', 'root', '');
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
   die("Database connection failed: " . $e->getMessage());
-
-  
 }
+var_dump($_SESSION)
 
 ?>
 
@@ -55,7 +55,7 @@ try {
           <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
         </li>
       </ul>
-
+ <!-- kijkt of je ingelogd bent of niet, dit geeft ook dan andere displays als 1 van de twee geactiveerd zijn -->
       <?php
       if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         echo '<ul class="navbar-nav">
@@ -82,47 +82,47 @@ try {
 </nav>
     <div class="container col-8 mt-5">
         <h2 class="mb-3">Accountinstellingen</h2>
-        <?php
-        // hier echo ik mijn user id
-        if (isset($_SESSION['user_id'])) {
-          $user_id = $_SESSION['user_id'];
-      } else {
-          // Bijvoorbeeld: terugsturen naar loginpagina
-          header("Location: ../Accountgegevens/login.php");
-          exit();
-      }
-      
-        ?>
+    
         <!-- Hier komt de code voor het ophalen van de gegevens van de ingelogde gebruiker -->
-        <?php
-        if (isset($_SESSION['user_id'])) {
-            $userId = $_SESSION['user_id'];
-            $query = "SELECT * FROM LedenOverzicht WHERE id = :user_id";
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-            $stmt->execute();
-        } else {
-            echo "Op dit moment kunnen wij geen gegevens ophalen. Probeer het later opnieuw.";
-            exit;
-        }
+    
+    <div class="container mt-4">
+        <div id="accounts-list">
+            <?php
+            if (isset($_SESSION['user_id'])) {
+              $userId = $_SESSION['user_id'];
+              $stmt = $mysqli->prepare("SELECT voornaam, tussenvoegsel, achternaam, email, relatienummer FROM LedenOverzicht WHERE id = ?");
+              $stmt->execute();
+              $result = $stmt->get_result();
 
-        if ($stmt->rowCount() > 0) {
-            echo "<ul class='list-group'>";
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
-                echo "<span>" . htmlspecialchars($row['Voornaam']) . " " . 
-                     (!empty($row['Tussenvoegsel']) ? htmlspecialchars($row['Tussenvoegsel']) . " " : "") . 
-                   htmlspecialchars($row['Achternaam']) . " - " . 
-                   htmlspecialchars($row['Relatienummer']) . " - " . 
-                   htmlspecialchars($row['Mobiel']) . " - " . 
-                   htmlspecialchars($row['Email']) . "</span>";
+              if ($result->num_rows > 0) {
+                echo str_repeat("<br>", 2);
+                while ($row = $result->fetch_assoc()) {
+                  echo "<li class='list-group-item d-flex justify-content-between align-items-center'>";
 
-            echo "</ul>";
-       
-        }
-        }
-        ?>
+                  echo "<span>Volledige naam: " . htmlspecialchars($row['voornaam']) 
+                  . " " . 
+                     (!empty($row['tussenvoegsel']) ? htmlspecialchars($row['tussenvoegsel']) 
+                     . " " : "") . 
+                     htmlspecialchars($row['achternaam']) . "</span>";
+
+                  echo "<span>Email: " . htmlspecialchars($row['email']) . "</span>";
+
+                  echo "<span>Relatienummer: " . htmlspecialchars($row['relatienummer']) . "</span>";
+                  echo "</li>";
+                }
+              } else {
+                echo "Geen gegevens gevonden.";
+              }
+            } 
+            if (isset($stmt)) {
+              $stmt->close();
+            }
+            $mysqli->close();
+            ?>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-  </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

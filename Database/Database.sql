@@ -1,4 +1,4 @@
---hiero
+
 DROP DATABASE IF EXISTS FitForFun;
  
 CREATE DATABASE FitForFun;
@@ -123,23 +123,27 @@ VALUES
  
 CREATE TABLE LedenOverzicht
 (
-    Id               INT(3)          UNSIGNED               NOT NULL   AUTO_INCREMENT,
+    user_id          INT(3)          UNSIGNED               NOT NULL   AUTO_INCREMENT,
+    username         VARCHAR(50)                            NOT NULL,
     Voornaam         VARCHAR(150)                           NOT NULL,
     Tussenvoegsel    VARCHAR(50)                            NULL,
     Achternaam       VARCHAR(150)                           NOT NULL,
     Relatienummer    VARCHAR(50)                            NOT NULL,
     Mobiel           VARCHAR(180)                           NOT NULL,
     Email            VARCHAR(255)                           NOT NULL,
-    Lid_Sinds        VARCHAR(20)                            NOT NULL,
+    Lid_Sinds        VARCHAR(10)                            NOT NULL,
+    rol              ENUM('Administrator','Medewerker','Lid','GastGebruiker') NOT NULL,
+    password         VARCHAR(255)                           NOT NULL,
     IsActief         BIT                                    NOT NULL    DEFAULT 1,
     Opmerking        VARCHAR(255)                           NULL        DEFAULT NULL,
     DatumAangemaakt  DATETIME(6)                            NOT NULL,
     DatumGewijzigd   DATETIME(6)                            NOT NULL,
-    CONSTRAINT       PK_LedenOverzicht_Id                   PRIMARY KEY CLUSTERED(Id)
+    CONSTRAINT       PK_LedenOverzicht_user_id              PRIMARY KEY CLUSTERED(user_id)
 ) ENGINE=InnoDB;
- 
+
 INSERT INTO LedenOverzicht
 (
+    username,
     Voornaam,
     Tussenvoegsel,
     Achternaam,
@@ -147,37 +151,39 @@ INSERT INTO LedenOverzicht
     Mobiel,
     Email,
     Lid_Sinds,
+    rol,
+    password,
     IsActief,
     Opmerking,
     DatumAangemaakt,
     DatumGewijzigd
 )
 VALUES
-('Jeroen', 'van', 'Bakker', 'REL001', '0612345678', 'jeroen.bakker@example.com', '01-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Jesse', NULL, 'Jansen', 'REL002', '0623456789', 'jesse.jansen@example.com', '04-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ahmed', NULL, 'Ali', 'REL003', '0634567890', 'ahmed.ali@example.com', '07-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ismael', 'el', 'Hassan', 'REL004', '0645678901', 'ismael.hassan@example.com', '10-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Wessel', 'de', 'Vries', 'REL005', '0656789012', 'wessel.devries@example.com', '13-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mark', NULL, 'Johnson', 'REL006', '0667890123', 'mark.johnson@example.com', '16-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Daniel', NULL, 'Smith', 'REL007', '0678901234', 'daniel.smith@example.com', '19-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sophie', NULL, 'Williams', 'REL008', '0689012345', 'sophie.williams@example.com', '22-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Lucas', 'de', 'Brown', 'REL009', '0690123456', 'lucas.brown@example.com', '25-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Emma', 'van der', 'Jones', 'REL010', '0601234567', 'emma.jones@example.com', '28-01-2025', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mila', NULL, 'Martinez', 'REL011', '0612345678', 'mila.martinez@example.com', '31-01-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Noah', 'de', 'Martinez', 'REL012', '0623456789', 'noah.martinez@example.com', '03-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Eva', 'del', 'Garcia', 'REL013', '0634567890', 'eva.garcia@example.com', '06-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Liam', NULL, 'Rodriguez', 'REL014', '0645678901', 'liam.rodriguez@example.com', '09-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Julia', 'van', 'Wilson', 'REL015', '0656789012', 'julia.wilson@example.com', '12-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Finn', NULL, 'Anderson', 'REL016', '0667890123', 'finn.anderson@example.com', '15-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Tess', NULL, 'Thomas', 'REL017', '0678901234', 'tess.thomas@example.com', '18-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Carlos', 'de', 'Taylor', 'REL018', '0689012345', 'carlos.taylor@example.com', '21-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Yuki', NULL, 'Moore', 'REL019', '0690123456', 'yuki.moore@example.com', '24-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Aisha', NULL, 'Jackson', 'REL020', '0601234567', 'aisha.jackson@example.com', '27-02-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Lars', 'van', 'White', 'REL021', '0612345678', 'lars.white@example.com', '01-03-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', '04-03-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', '07-03-2024', 1, NULL, SYSDATE(6), SYSDATE(6)),
-('Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', '10-03-2024', 1, NULL, SYSDATE(6), SYSDATE(6));
- 
+('Hamidoes', 'Hamida', 'El', 'Harachi', 'REL001', '0612345678', 'hamida.Harachi@example.com', '01-01-2025', 'Lid', 'Hamida123!?', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('jesse.jansen', 'Jesse', NULL, 'Jansen', 'REL002', '0623456789', 'jesse.jansen@example.com', '04-01-2025', 'Lid', 'JessePass456!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('ahmed.ali', 'Ahmed', NULL, 'Ali', 'REL003', '0634567890', 'ahmed.ali@example.com', '07-01-2025', 'Lid', 'AhmedPass789!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('ismael.hassan', 'Ismael', 'el', 'Hassan', 'REL004', '0645678901', 'ismael.hassan@example.com', '10-01-2025', 'Lid', 'IsmaelPass012!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('wessel.devries', 'Wessel', 'de', 'Vries', 'REL005', '0656789012', 'wessel.devries@example.com', '13-01-2025', 'Lid', 'WesselPass345!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('mark.johnson', 'Mark', NULL, 'Johnson', 'REL006', '0667890123', 'mark.johnson@example.com', '16-01-2025', 'Lid', 'MarkPass678!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('daniel.smith', 'Daniel', NULL, 'Smith', 'REL007', '0678901234', 'daniel.smith@example.com', '19-01-2025', 'Lid', 'DanielPass901!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('sophie.williams', 'Sophie', NULL, 'Williams', 'REL008', '0689012345', 'sophie.williams@example.com', '22-01-2025', 'Lid', 'SophiePass234!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('lucas.brown', 'Lucas', 'de', 'Brown', 'REL009', '0690123456', 'lucas.brown@example.com', '25-01-2025', 'Lid', 'LucasPass567!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('emma.jones', 'Emma', 'van der', 'Jones', 'REL010', '0601234567', 'emma.jones@example.com', '28-01-2025', 'Lid', 'EmmaPass890!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('mila.martinez', 'Mila', NULL, 'Martinez', 'REL011', '0612345678', 'mila.martinez@example.com', '31-01-2024', 'Lid', 'MilaPass123!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('noah.martinez', 'Noah', 'de', 'Martinez', 'REL012', '0623456789', 'noah.martinez@example.com', '03-02-2024', 'Lid', 'NoahPass456!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('eva.garcia', 'Eva', 'del', 'Garcia', 'REL013', '0634567890', 'eva.garcia@example.com', '06-02-2024', 'Lid', 'EvaPass789!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('liam.rodriguez', 'Liam', NULL, 'Rodriguez', 'REL014', '0645678901', 'liam.rodriguez@example.com', '09-02-2024', 'Lid', 'LiamPass012!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('julia.wilson', 'Julia', 'van', 'Wilson', 'REL015', '0656789012', 'julia.wilson@example.com', '12-02-2024', 'Lid', 'JuliaPass345!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('finn.anderson', 'Finn', NULL, 'Anderson', 'REL016', '0667890123', 'finn.anderson@example.com', '15-02-2024', 'Lid', 'FinnPass678!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('tess.thomas', 'Tess', NULL, 'Thomas', 'REL017', '0678901234', 'tess.thomas@example.com', '18-02-2024', 'Lid', 'TessPass901!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('carlos.taylor', 'Carlos', 'de', 'Taylor', 'REL018', '0689012345', 'carlos.taylor@example.com', '21-02-2024', 'Lid', 'CarlosPass234!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('yuki.moore', 'Yuki', NULL, 'Moore', 'REL019', '0690123456', 'yuki.moore@example.com', '24-02-2024', 'Lid', 'YukiPass567!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('aisha.jackson', 'Aisha', NULL, 'Jackson', 'REL020', '0601234567', 'aisha.jackson@example.com', '27-02-2024', 'Lid', 'AishaPass890!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('lars.white', 'Lars', 'van', 'White', 'REL021', '0612345678', 'lars.white@example.com', '01-03-2024', 'Lid', 'LarsPass123!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('sofia.harris', 'Sofia', 'de', 'Harris', 'REL022', '0623456789', 'sofia.harris@example.com', '04-03-2024', 'Lid', 'SofiaPass456!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('ming.martin', 'Ming', NULL, 'Martin', 'REL023', '0634567890', 'ming.martin@example.com', '07-03-2024', 'Lid', 'MingPass789!', 1, NULL, SYSDATE(6), SYSDATE(6)),
+('mingo.lee', 'Mingo', 'van der', 'Lee', 'REL024', '0645678901', 'mingo.lee@example.com', '10-03-2024', 'Lid', 'MingoPass012!', 1, NULL, SYSDATE(6), SYSDATE(6));
+
 CREATE TABLE Les (
     Id INT NOT NULL AUTO_INCREMENT,
     Naam VARCHAR(50) NOT NULL,

@@ -40,7 +40,7 @@ if ($conn->connect_error) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="../Homepagina/index.php">Home</a>
+          <a class="nav-link" href="/Homepagina/index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../AanbiedingenPagina/aanbiedingen.php">Aanbiedingen</a>
@@ -52,13 +52,13 @@ if ($conn->connect_error) {
           <a class="nav-link" href="../AccountsOverzicht/login.php">Management Dashboard</a>
         </li>
       </ul>
-
+ <!-- kijkt of je ingelogd bent of niet, dit geeft ook dan andere displays als 1 van de twee geactiveerd zijn -->
       <?php
             session_start(); 
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
               echo '<ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="../Accountgegevens/index.php">Accountinstellingen</a>
+                    <a class="nav-link" href="../Accountgegevens/login.php">Accountinstellingen</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="../AccountsOverzicht/logout.php">Uitloggen</a>
@@ -67,7 +67,7 @@ if ($conn->connect_error) {
             } else {
               echo '<ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="../AccountsOverzicht/login.php">Login</a>
+                    <a class="nav-link" href="../Accountgegevens/login.php">Login</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="../PerPeriode/create.php">Register</a>

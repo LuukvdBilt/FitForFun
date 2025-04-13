@@ -1,7 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+
 
 $mysqli = new mysqli("localhost", "root", "", "Fitforfun");
 
@@ -12,18 +11,26 @@ if ($mysqli->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
-    $stmt = $mysqli->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    $stmt = $mysqli->prepare("SELECT * FROM LedenOverzicht WHERE Username = ?");
+    $stmt->bind_param("s", $username); 
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    var_dump($user);
 
-    if ($user && ($user['role'] == 'Medewerker' || $user['role'] == 'Administrator') ||($user['role'] == 'Lid' && $user['password'] == $password)) {
+    if ($user && ($user['rol'] == 'Medewerker' || $user['rol'] == 'Administrator') ||($user['rol'] == 'Lid' && $user['password'] == $password)) {
+        $stmt = $mysqli->prepare("SELECT * FROM LedenOverzicht WHERE Username = ?");
         $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
+        $_SESSION['Voornaam'] = $user['Voornaam'];
+        $_SESSION['Tussenvoegsel'] = $user['Tussenvoegsel'];
+        $_SESSION['Achternaam'] = $user['Achternaam'];
+        $_SESSION['Relatienummer'] = $user['Relatienummer'];
+        $_SESSION['Mobiel'] = $user['Mobiel'];
+        $_SESSION['Email'] = $user['Email'];
+        $_SESSION['Lid_Sinds'] = $user['Lid_Sinds'];
+        $_SESSION['rol'] = $user['rol'];
+        $_SESSION['password'] = $user['password'];
         $_SESSION['loggedin'] = true;
+        $_SESSION['user_id'] = $user['id'];
         $stmt->close();
         $mysqli->close();
         header("Location: index.php");
@@ -97,24 +104,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </div>
         </div>
       </nav>
-
-
-      <div class="containerlogin">
-        <form action="login.php" method="POST">
-          <img class="logo" 
-          src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" 
-          alt="FitForFun Logo">
-          <br>
-          <h4>beveiligingscontrole</h4>
-          <label for="username">Gebruikersnaam:</label>
-          <input type="text" id="username" name="username" required><br>
-          <label for="password">Wachtwoord:</label>
-          <input type="password" id="password" name="password" required><br>
-          <br>
-          <input type="submit" value="Inloggen">
-        </form>
-
-        <?php
+<?php
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+      echo '
+        <div class="containerlogin">
+          <form action="login.php" method="POST">
+            <img class="logo" 
+            src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" 
+            alt="FitForFun Logo">
+            <br>
+            <h4>beveiligingscontrole</h4>
+            <label for="username">Gebruikersnaam:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Wachtwoord:</label>
+            <input type="password" id="password" name="password" required><br>
+            <br>
+            <input type="submit" value="Inloggen">
+          </form>
+        </div>
+      ';}
         if (isset($_SESSION['error_message'])) {
           echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
           unset($_SESSION['error_message']);
@@ -126,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         ?>
       </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>

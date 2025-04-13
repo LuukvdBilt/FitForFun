@@ -33,10 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mysqli->close();
         header("Location: login.php");
         exit;
-    } else if ($user && ($_SESSION['loggedin'] === true && $user['role'] == 'Medewerker' || $user['role'] == 'Administrator') && $user['password'] == $password) {
-      header("Location: ../Dashboard/Dashboard.php");
-      exit;
-    } else {
+    } 
+     else {
       $_SESSION['error_message2'] = "<span style='color: red;'>Onjuiste gebruikersnaam of wachtwoord.</span>";
       $stmt->close();
       $mysqli->close();

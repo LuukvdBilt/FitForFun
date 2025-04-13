@@ -34,7 +34,7 @@
           </li>
           
             </ul>
-    
+     <!-- kijkt of je ingelogd bent of niet, dit geeft ook dan andere displays als 1 van de twee geactiveerd zijn -->
             <?php
             session_start(); 
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
