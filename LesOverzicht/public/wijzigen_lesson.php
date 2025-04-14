@@ -68,7 +68,7 @@ $conn->close();
 </head>
 <body>
     <div class="container mt-5">
-    <img src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" alt="FitForFun Logo" class="logo">
+    <img src="https://www.burda-forward.de/files/images/03_Media/Brands/FitForFun/BF_Media_Brands_FitForFun_logo.png" alt="FitForFun Logo" class="logo">    git push origin main
         <h1 class="mb-4">Les Wijzigen</h1>
 
         <form method="POST" action="wijzigen_lesson.php?id=<?php echo $les['Id']; ?>">
