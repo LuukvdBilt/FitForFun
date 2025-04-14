@@ -10,36 +10,44 @@ if (isset($_POST['submit'])) {
     $pdo = new PDO($dsn, $dbUser, $dbPass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // kik of de lid al bestaat
-    $checkSql = "SELECT COUNT(*) FROM LedenOverzicht 
-         WHERE Voornaam = :voornaam 
-         AND Tussenvoegsel = :tussenvoegsel 
-         AND Achternaam = :achternaam 
-         AND Email = :email 
-         AND username = :username 
-         AND Nummer = :nummer 
-         AND Mobiel = :mobiel 
-         AND password = :password";
-    $checkStatement = $pdo->prepare($checkSql);
+    // Controleer of de gebruikersnaam al bestaat
+    $usernameCheckSql = "SELECT COUNT(*) FROM LedenOverzicht WHERE username = :username";
+    $usernameCheckStatement = $pdo->prepare($usernameCheckSql);
+    $usernameCheckStatement->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
+    $usernameCheckStatement->execute();
+    $usernameCount = $usernameCheckStatement->fetchColumn();
 
-    $checkStatement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':nummer', $_POST['Nummer'], PDO::PARAM_INT);
-    $checkStatement->bindValue(':mobiel', $_POST['mobiel'], PDO::PARAM_STR);
-    $checkStatement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
-    $checkStatement->execute();
-    $count = $checkStatement->fetchColumn();
-
-    if ($count > 0) {
-      $errorMessage = 'Dit persoon bestaat al';
+    if ($usernameCount > 0) {
+      $errorMessage = 'De gebruikersnaam bestaat al. Kies een andere gebruikersnaam.';
       $display = 'flex';
-    } 
-    // voert de query uit om de gegevens op te slaan
-    else {
-      $sql = "INSERT INTO LedenOverzicht
+    } else {
+      // Controleer of de gebruiker al bestaat op basis van andere gegevens
+      $checkSql = "SELECT COUNT(*) FROM LedenOverzicht 
+           WHERE Voornaam = :voornaam 
+           AND Tussenvoegsel = :tussenvoegsel 
+           AND Achternaam = :achternaam 
+           AND Email = :email 
+           AND Nummer = :nummer 
+           AND Mobiel = :mobiel 
+           AND password = :password";
+      $checkStatement = $pdo->prepare($checkSql);
+
+      $checkStatement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
+      $checkStatement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
+      $checkStatement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
+      $checkStatement->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+      $checkStatement->bindValue(':nummer', $_POST['Nummer'], PDO::PARAM_INT);
+      $checkStatement->bindValue(':mobiel', $_POST['mobiel'], PDO::PARAM_STR);
+      $checkStatement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
+      $checkStatement->execute();
+      $count = $checkStatement->fetchColumn();
+
+      if ($count > 0) {
+        $errorMessage = 'Dit persoon bestaat al';
+        $display = 'flex';
+      } else {
+        // Voer de query uit om de gegevens op te slaan
+        $sql = "INSERT INTO LedenOverzicht
           (
             username,
             Voornaam,
@@ -48,7 +56,9 @@ if (isset($_POST['submit'])) {
             Nummer,
             Mobiel,
             Email,
-            password
+            password,
+            rol,
+            lid_sinds
           )
           VALUES
           (
@@ -59,22 +69,27 @@ if (isset($_POST['submit'])) {
             :nummer,
             :mobiel,
             :email,
-            :password
+            :password,
+            :rol,
+            CURDATE()
           )";
-      $statement = $pdo->prepare($sql);
-      $statement->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
-      $statement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
-      $statement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
-      $statement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
-      $statement->bindValue(':nummer', $_POST['Nummer'], PDO::PARAM_INT);
-      $statement->bindValue(':mobiel', $_POST['mobiel'], PDO::PARAM_STR);
-      $statement->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
-      $statement->bindValue(':password', password_hash($_POST['password'], PASSWORD_BCRYPT), PDO::PARAM_STR);
 
-      $statement->execute();
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
+        $statement->bindValue(':voornaam', $_POST['voornaam'], PDO::PARAM_STR);
+        $statement->bindValue(':tussenvoegsel', $_POST['tussenvoegsel'], PDO::PARAM_STR);
+        $statement->bindValue(':achternaam', $_POST['achternaam'], PDO::PARAM_STR);
+        $statement->bindValue(':nummer', $_POST['Nummer'], PDO::PARAM_INT);
+        $statement->bindValue(':mobiel', $_POST['mobiel'], PDO::PARAM_STR);
+        $statement->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+        $statement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
+        $statement->bindValue(':rol', 'lid', PDO::PARAM_STR);
 
-      $display = 'flex';
-      header('Refresh:3; url=../Homepagina/index.php');
+        $statement->execute();
+
+        $display = 'flex';
+        header('Refresh:3; url=../Homepagina/index.php');
+      }
     }
   } catch (PDOException $e) {
     $errorMessage = 'Er is een fout opgetreden: ' . $e->getMessage();
@@ -82,6 +97,8 @@ if (isset($_POST['submit'])) {
   }
 }
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -137,11 +154,31 @@ if (isset($_POST['submit'])) {
           <input name="achternaam" type="text" class="form-control" id="achternaam" placeholder="Achternaam" required>
         </div>
         <div class="mb-3">
+          <?php
+          // dit maakt een unieke nummer voor een lid aan, ook kan dezelfde nummer niet meer gebruikt worden
+          include('config.php');
+          try {
+            $dsn = "mysql:host=$dbHost;dbname=$dbName;charset=UTF8";
+            $pdo = new PDO($dsn, $dbUser, $dbPass);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            do {
+              $uniqueNumber = rand(100000, 999999); 
+              $checkSql = "SELECT COUNT(*) FROM LedenOverzicht WHERE Nummer = :nummer";
+              $checkStatement = $pdo->prepare($checkSql);
+              $checkStatement->bindValue(':nummer', $uniqueNumber, PDO::PARAM_INT);
+              $checkStatement->execute();
+              $count = $checkStatement->fetchColumn();
+            } while ($count > 0); 
+          } catch (PDOException $e) {
+            $uniqueNumber = ''; 
+          }
+          ?>
           <label for="Nummer" class="form-label">Nummer</label>
-          <input name="Nummer" type="number" class="form-control" id="Nummer" placeholder="Nummer" required>
+          <input name="Nummer" type="number" class="form-control" id="Nummer" placeholder="Nummer" value="<?= htmlspecialchars($uniqueNumber) ?>" readonly>
         </div>
         <div class="mb-3">
-          <label for="mobiel" class="form-label">Mobiel</label>
+          <label for="mobiel" class="form-label">Mobiele telefoonnummer</label>
           <input name="mobiel" type="number" class="form-control" id="mobiel" placeholder="Mobiel" required>
         </div>
         <div class="mb-3">
@@ -153,7 +190,7 @@ if (isset($_POST['submit'])) {
           <input name="password" type="password" class="form-control" id="password" placeholder="Wachtwoord" required>
         </div>
         <div class="d-grid gap-4">
-          <button name="submit" value="submit" type="submit" class="btn btn-primary btn-lg">Submit</button>
+          <button name="submit" value="submit" type="submit" class="btn btn-primary btn-lg">Opslaan</button>
         </di>
       </form>
     </div>
