@@ -137,7 +137,7 @@ if (isset($_POST['submit'])) {
                             <input name="email" type="email" class="form-control" id="emailLid" placeholder="Email adres" required value="<?= isset($lid['Email']) ? htmlspecialchars($lid['Email'], ENT_QUOTES) : ''; ?>">
                         </div>
                         <div class="d-grid gap-2">
-                            <button name="submit" value="submit" type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            <button name="submit" value="submit" type="submit" class="btn btn-primary btn-lg">Opslaan</button>
                         </div>
                     </form>
                 </div>
