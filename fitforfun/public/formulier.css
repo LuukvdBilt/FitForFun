@@ -1,0 +1,79 @@
+body {
+    background-color: #f4f4f9;
+    color: #333333;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    color: #0047AB;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #0047AB;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-control, .form-select {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #333333;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 30px;
+    width: 120px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #0047AB;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
